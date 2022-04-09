@@ -3,4 +3,4 @@
 ## Authors:
   - [Gustavo Henrique Brunelli]()
   - [Matheus Henrique de Cerqueira Pinto]()
-  - [Matheus Ventura de Sousa](github.com/matheus-sousa007)
+  - [Matheus Ventura de Sousa](https://github.com/matheus-sousa007)

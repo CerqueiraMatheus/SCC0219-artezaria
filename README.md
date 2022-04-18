@@ -41,6 +41,8 @@
 
 ## 6. Problemas
 
+* **Construção dos protótipos iniciais**: a intenção do grupo era utilizar os componentes (campos de texto, botões e cards) disponibilizados pelo Material Design. Isso não foi plenamente possível pois, para a implementação, seriam necessários arquivos de configuração personalizados externos aos `.html` e `.css` criados.
+
 ## Autores
 
 * [Gustavo Henrique Brunelli](https://github.com/gbrunelli)

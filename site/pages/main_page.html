@@ -37,7 +37,7 @@
 
     <!-- Begin main -->
     <div id="main">
-        <div id="sidebar" class="right-align">
+        <div id="main-sidebar" class="right-align">
             <h1>Categorias</h1>
             <ul>
                 <li>
@@ -85,14 +85,14 @@
             </ul>
         </div>
 
-        <div id="content">
+        <div id="main-content">
 
-            <div class="content-row">
-                <div class="content-row-title">
+            <div class="main-content-row">
+                <div class="main-content-row-title">
                     <h1 class="half-visible">Em destaque</h1>
                 </div>
 
-                <div class="content-row-product">
+                <div class="main-content-row-product">
                     <div class="owl-carousel owl-theme">
                         <div class="product-card">
                             <div class="product-card-title">
@@ -196,12 +196,12 @@
                 </div>
             </div>
 
-            <div class="content-row">
-                <div class="content-row-title">
+            <div class="main-content-row">
+                <div class="main-content-row-title">
                     <h1 class="half-visible">Conheça: Mestre Vitalino</h1>
                 </div>
 
-                <div class="content-row-product">
+                <div class="main-content-row-product">
                     <div class="owl-carousel owl-theme">
 
                         <div class="product-card">
@@ -341,12 +341,12 @@
                 </div>
             </div>
 
-            <div class="content-row">
-                <div class="content-row-title">
+            <div class="main-content-row">
+                <div class="main-content-row-title">
                     <h1 class="half-visible">Mais vendidos do dia</h1>
                 </div>
 
-                <div class="content-row-product">
+                <div class="main-content-row-product">
                     <div class="owl-carousel owl-theme">
                         <div class="product-card">
                             <div class="product-card-title">
@@ -475,15 +475,6 @@
             nav: true,
             navText: ["<span class= 'material-icons'>chevron_left</span>", "<span class= 'material-icons'>chevron_right</span>"],
         })
-    </script>
-
-    <!-- Material text field instance -->
-    <script>
-        const textFields = document.querySelectorAll('.mdc-text-field');
-
-        textFields.forEach(field => {
-            mdc.textField.MDCTextField.attachTo(field);
-        });
     </script>
 </body>
 

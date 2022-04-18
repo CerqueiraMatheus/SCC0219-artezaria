@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Material design components -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+        rel="stylesheet" />
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+    <!-- Owl carousel components -->
+    <link rel="stylesheet" href="../owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="../owlcarousel/owl.theme.default.min.css">
+
+    <!-- Base style -->
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+    <!-- Begin header -->
+    <div id="header">
+        <div id="header-logo" class="center">
+            <h3> artezaria </h3>
+        </div>
+
+        <div id="header-search" class="center">
+            <input type="text" placeholder="Clique e busque por um artista ou obra de arte" class="search-bar"
+                autofocus />
+        </div>
+
+        <div id="header-profile" class="center">
+            <h3> <a href="batata"> seu perfil e carrinho </a></h3>
+        </div>
+    </div>
+    <!-- End header -->
+
+    <!-- Begin main -->
+    <div id="main">
+        <div class="main-product-description">
+            <img src="https://iiif.micr.io/jWJAb/full/600,/0/default.jpg" style="width: 100%;" class="center">
+        </div>
+
+        <div class="main-product-buy">
+            <h1> Martim-pescador à beira d'água </h1>
+            <h2> Vincent van Gogh</h2>
+            <p>
+                This kingfisher sits by the waterside, on the lookout for fish. Van Gogh had a mounted kingfisher, which
+                has been preserved. Comparing this painting to the mounted bird, one notices a couple of differences.
+                Van Gogh made the tail slightly longer in the painting, probably to achieve a balance with the raised
+                beak. He also gave the bird feet – useful to have when perched on a reed stem. The kingfisher's
+                brilliant blue plumage looks a little dull here.
+            </p>
+
+            <h3> Item único! </h3>
+
+            <button class="mdc-button mdc-button--raised text" style="width: 100%;">
+                <span class="mdc-button__label"> Adicionar ao carrinho </span>
+            </button>
+        </div>
+    </div>
+    <!-- End main -->
+
+    <!-- Begin footer -->
+    <div id="footer">
+        <p> <b> onde a vida encontra a arte.</b> 2022.</p>
+    </div>
+    <!-- End footer -->
+
+    <!-- External scripts -->
+    <script src="../jquery.min.js"></script>
+    <script src="../owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Owl carousel instance -->
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            // stagePadding: 10,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplayHoverPause: true,
+            dots: false,
+            nav: true,
+            navText: ["<span class= 'material-icons'>chevron_left</span>", "<span class= 'material-icons'>chevron_right</span>"],
+        })
+    </script>
+</body>
+
+</html>

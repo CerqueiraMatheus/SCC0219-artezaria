@@ -41,10 +41,10 @@ A plataforma, até o momento, está implementada usando HTML, CSS, alguns compon
 Para organizar os conjuntos de telas, foram desenvolvidos diagramas de navegação para o cliente e administrador.
 
 #### Diagrama do Cliente
-![diagrama_cliente.jpg](imagens%5Creadme%5Cdiagrama_cliente.jpg)
+![diagrama_cliente.jpg](imagens/readme/diagrama_cliente.jpg)
 
 #### Diagrama do administrador
-![diagrama_admin.jpg](imagens%5Creadme%5Cdiagrama_admin.jpg)
+![diagrama_admin.jpg](imagens/readme/diagrama_admin.jpg)
 
 Os mockups desenvolvidos para as páginas do cliente estão sob a pasta `imagens/telas`, na raiz do projeto, com nomes correspondentes aos itens dos diagramas de tela.
 

@@ -86,7 +86,7 @@ Atualmente, basta realizar o download do repositório, navegar até a pasta em q
 
 ## Autores
 
-* [Gustavo Henrique Brunelli (NUSP)](https://github.com/gbrunelli)
+* [Gustavo Henrique Brunelli (11801053)](https://github.com/gbrunelli)
 
 * [Matheus Henrique de Cerqueira Pinto (11911104)](https://github.com/cerqueiramatheus)
 

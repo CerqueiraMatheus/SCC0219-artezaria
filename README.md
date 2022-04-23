@@ -1,4 +1,5 @@
 # artezaria
+
 > Projeto de uma loja de compra e venda de artes em geral. Requisito parcial da disciplina de Introdução ao Desenvolvimento Web (SCC0219) do curso de Ciências de Computação do ICMC/USP durante o 1º semestre de 2022.
 
 ## 1. Requerimentos

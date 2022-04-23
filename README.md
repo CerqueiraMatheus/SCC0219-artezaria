@@ -1,5 +1,5 @@
 # artezaria
-> Descrição curta
+> Projeto de uma loja de compra e venda de artes em geral. Requisito parcial da disciplina de Introdução ao Desenvolvimento Web (SCC0219) do curso de Ciências de Computação do ICMC/USP durante o 1º semestre de 2022.
 
 ## 1. Requerimentos
 
@@ -33,11 +33,39 @@
 
 ## 2. Descrição do projeto
 
+**artezaria** é uma plataforma de compra e venda de obras de arte, como quadros, artesanatos, esculturas, sendo eles de produção única ou em larga quantidade. O foco principal é no comércio dos produtos, mas, também, de valorização de artistas, suas artes e histórias. 
+
+A plataforma, até o momento, está implementada usando HTML, CSS, alguns componentes do [Material Design](batata.com) e o carrossel do framework [Owl Carousel 2](batata.com) para a exibição dos produtos e os scripts necessários para o funcionamento dos elementos.
+
+### 2.1. Diagramas de navegação
+Para organizar os conjuntos de telas, foram desenvolvidos diagramas de navegação para o cliente e administrador.
+
+#### Diagrama do Cliente
+![diagrama_cliente.jpg](imagens%5Creadme%5Cdiagrama_cliente.jpg)
+
+#### Diagrama do administrador
+![diagrama_admin.jpg](imagens%5Creadme%5Cdiagrama_admin.jpg)
+
+Os mockups desenvolvidos para as páginas do cliente estão sob a pasta `imagens/telas`, na raiz do projeto, com nomes correspondentes aos itens dos diagramas de tela.
+
+### 2.2. Funcionalidades propostas para o sistema
+
+Através das telas propostas, os autores esperam que, através do sistema:
+
+1. Um usuário qualquer possa entrar com e-mail e senha na plataforma, cadastrar-se e alterar informações sobre seu próprio cadastro, através das telas `Entrar/Cadastrar` e `Perfil`;
+2. Um cliente possa visualizar, adicionar ao carrinho e comprar Produtos disponíveis no site, através das telas `Tela Inicial`, `Produto`, `Carrinho` e `Pagamento`;
+3. Um cliente possa visualizar a página de descrição de artistas ativos na plataforma, seus vídeos e materiais, através da tela `Artesão`;
+4. Um cliente possa se tornar um cliente artesão, gerenciar suas informações de artesão, seus anúncios ativos e vendas em processo, através das telas `Perfil do artesão`, `Gerenciar vendas` e `Gerenciar anúncios`;
+5. Um administrador possa gerenciar o sistema, administradores, anúncios e usuários através das telas `Dashboard`, `Gerenciar anúncios`, `Gerenciar anúncios`.
+
 ## 3. Comentários sobre o código
+Atualmente, o código-fonte do site está disposto sob a pasta `site`. Nela, estão as pastas `css`, com os estilos desenvolvidos, `pages`, com as páginas desenvolvidas e os demais arquivos utilizados pelas ferramentas externas utilizadas.
 
 ## 4. Plano de testes
+Atualmente, o projeto foi executado apenas no navegador Google Chrome, sem problemas aparentes de execução. Quando houver a possibilidade de uso de frameworks e servidor, serão utilizadas as ferramentas adequadas para testes, como, por exemplo, JUnit e Postman.
 
 ## 5. Procedimentos de execução
+Atualmente, basta realizar o download do repositório, navegar até a pasta em que estão dispostos os protótipos desenvolvidos e abrir num navegador web.
 
 ## 6. Problemas
 
@@ -45,8 +73,8 @@
 
 ## Autores
 
-* [Gustavo Henrique Brunelli](https://github.com/gbrunelli)
+* [Gustavo Henrique Brunelli (NUSP)](https://github.com/gbrunelli)
 
-* [Matheus Henrique de Cerqueira Pinto](https://github.com/cerqueiramatheus)
+* [Matheus Henrique de Cerqueira Pinto (11911104)](https://github.com/cerqueiramatheus)
 
-* [Matheus Ventura de Sousa](https://github.com/matheus-sousa007)
+* [Matheus Ventura de Sousa (NUSP)](https://github.com/matheus-sousa007)

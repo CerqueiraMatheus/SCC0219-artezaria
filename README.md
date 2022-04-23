@@ -90,4 +90,4 @@ Atualmente, basta realizar o download do repositório, navegar até a pasta em q
 
 * [Matheus Henrique de Cerqueira Pinto (11911104)](https://github.com/cerqueiramatheus)
 
-* [Matheus Ventura de Sousa (NUSP)](https://github.com/matheus-sousa007)
+* [Matheus Ventura de Sousa (11345541)](https://github.com/matheus-sousa007)

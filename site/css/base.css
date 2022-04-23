@@ -152,11 +152,11 @@
   height: 300px;
   margin-bottom: 1px;
   min-height: 300px;
-  min-width: 300px;
+  min-width: 200px;
   overflow: hidden;
   padding: 10px;
   transition: 0.3s;
-  width: 300px;
+  width: 85%;
 }
 
 .product-card-image {

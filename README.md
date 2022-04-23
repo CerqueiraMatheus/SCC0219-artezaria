@@ -35,7 +35,7 @@
 
 **artezaria** é uma plataforma de compra e venda de obras de arte, como quadros, artesanatos, esculturas, sendo eles de produção única ou em larga quantidade. O foco principal é no comércio dos produtos, mas, também, de valorização de artistas, suas artes e histórias. 
 
-A plataforma, até o momento, está implementada usando HTML, CSS, alguns componentes do [Material Design](batata.com) e o carrossel do framework [Owl Carousel 2](batata.com) para a exibição dos produtos e os scripts necessários para o funcionamento dos elementos.
+A plataforma, até o momento, está implementada usando HTML, CSS, alguns componentes do [Material Design](https://material.io/design) e o carrossel do framework [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/) para a exibição dos produtos e os scripts necessários para o funcionamento dos elementos.
 
 ### 2.1. Diagramas de navegação
 Para organizar os conjuntos de telas, foram desenvolvidos diagramas de navegação para o cliente e administrador.

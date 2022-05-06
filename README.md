@@ -66,7 +66,7 @@ Através das telas propostas, os autores esperam que, através do sistema:
 
 4. Um cliente possa se tornar um cliente artesão, gerenciar suas informações de artesão, seus anúncios ativos e vendas em processo, através das telas `Perfil do artesão`, `Gerenciar vendas` e `Gerenciar anúncios`;
 
-5. Um administrador possa gerenciar o sistema, administradores, anúncios e usuários através das telas `Dashboard`, `Gerenciar anúncios`, `Gerenciar anúncios`.
+5. Um administrador possa gerenciar o sistema, administradores, anúncios e usuários através das telas `Dashboard`, `Gerenciar anúncios`, `Gerenciar admins` e `Gerenciar usuários`.
 
 ## 3. Comentários sobre o código
 

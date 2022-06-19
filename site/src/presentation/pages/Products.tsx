@@ -20,7 +20,6 @@ const Products = () => {
 
             <ItemList items={items} title={"Título 5"}/>
 
-            <RowCard title={"Batata"} description={"Batata"} link={"Batata"}/>
         </div>
     );
 };

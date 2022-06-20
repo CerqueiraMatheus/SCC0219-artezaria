@@ -1,11 +1,8 @@
 import * as React from 'react';
-import {styled, alpha} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -23,26 +20,33 @@ export default function PrimarySearchAppBar() {
 
     return (
         <Box sx={{flexGrow: 1, marginBottom: "2%"}}>
-            <AppBar position="relative" sx={{
-                zIndex: (theme) => theme.zIndex.drawer + 1
-            }}>
+            <AppBar position="relative">
                 <Toolbar>
+
+                    {/* Title */}
                     <Box component="div" sx={{flexGrow: 1}}>
                         <Link variant="h6" onClick={handleNavigation} color="text.primary" component="button"
                               underline="none">
                             artezaria
                         </Link>
                     </Box>
+
+                    {/* Empty component - to be search bar? */}
                     <Box component="div" sx={{flexGrow: 1}}>
                     </Box>
 
+                    {/* Actions */}
                     <Box component="div" sx={{flexGrow: 1}}>
-                        <IconButton color="inherit" size="large">
-                            <Badge badgeContent={amountOfItemsOnCart()} color="error">
+
+                        {/* Cart */}
+                        <IconButton color="inherit" size="large"
+                                    onClick={isUserLoggedIn() ? () => navigate('/cart') : () => navigate('/signin')}>
+                            <Badge badgeContent={amountOfItemsOnCart} color="error">
                                 <ShoppingCartIcon/>
                             </Badge>
                         </IconButton>
 
+                        {/* Profile */}
                         <IconButton color="inherit" size="large"
                                     onClick={isUserLoggedIn() ? () => navigate('/account') : () => navigate('/signin')}>
                             <AccountCircleIcon/>

@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import AccountRowCard from "../components/Account/AccountRowCard";
 import Box from "@mui/material/Box";
-import {UserContext} from "../context/UserContext";
+import { UserContext } from "../context/UserContext";
 import { Avatar, Card, Container, Divider, Grid, Stack, TextField, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 

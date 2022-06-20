@@ -4,14 +4,14 @@ import Box from "@mui/material/Box";
 import {UserContext} from "../context/UserContext";
 
 function AccountPage() {
-    const {resetUserData} = useContext(UserContext);
+    const {resetUser} = useContext(UserContext);
     return (
         <>
             <AccountRowCard title={"Perfil"} description={"Veja e corrija suas informações pessoais"} link={"/home"}/>
             <Box sx={{height: 50}}/>
             <AccountRowCard title={"Minhas compras"} description={"Veja e corrija suas informações pessoais"} link={"/home"}/>
             <AccountRowCard title={"Anunciar"} description={"Veja e corrija suas informações pessoais"} link={"/home"}/>
-            <AccountRowCard title={"Sair"} description={"Veja e corrija suas informações pessoais"} link={"/home"} click={() => resetUserData()}/>
+            <AccountRowCard title={"Sair"} description={"Veja e corrija suas informações pessoais"} link={"/home"} click={() => resetUser()}/>
         </>
     );
 }

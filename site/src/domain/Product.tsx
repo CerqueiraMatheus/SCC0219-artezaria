@@ -8,6 +8,7 @@ export class Product {
     image: string = "";
     quantityInStock: number = 0;
     quantitySelected: number = 0;
+    quantitySold: number = 0;
     artist: Artist = new Artist();
 
     public constructor(init?: Partial<Product>) {

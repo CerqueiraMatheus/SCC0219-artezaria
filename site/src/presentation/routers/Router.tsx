@@ -11,6 +11,7 @@ import Footer from '../components/Navigation/Footer';
 // import Cart from '../components/Cart/Cart';
 // import Checkout from '../components/Checkout/Checkout';
 
+import ManagementProduct from '../pages/ManagementProduct';
 import Products from '../pages/Products';
 import ThemeContext from '../context/ThemeContext';
 import Container from '@mui/material/Container';
@@ -40,6 +41,7 @@ const DashboardRoutes = () => {
                         <Route path='/home' element={<Products/>}/>
                         <Route path='/item/:itemId' element={<ProductDetail/>}/>
                         <Route path='/artist/:artistId' element={<ArtistDetail/>}/>
+                        <Route path='/management/product' element={<ManagementProduct/>}/>s
                         {!isUserLoggedIn() && <Route path='/signin' element={<SignIn/>}/>}
                         {!isUserLoggedIn() && <Route path='/signup' element={<SignUp/>}/>}
                         {isUserLoggedIn() && <Route path='/account' element={<AccountPage/>}/>}

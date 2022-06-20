@@ -17,7 +17,7 @@ function EditProfilePage() {
             <Grid item xs={12}>
                 <Avatar>H</Avatar> 
             </Grid>
-            <Grid item spacing={spacing} xs={5}>
+            <Grid item xs={5}>
                 <Stack spacing={spacing}>
                     <Card raised sx={{padding: 5}}>
                         <Typography variant='h4' textAlign='center' gutterBottom>

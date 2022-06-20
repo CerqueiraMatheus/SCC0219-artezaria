@@ -1,61 +1,11 @@
-export const items = [
-    {
-        'id': 3,
-        'title': 'Item A',
-        'description': 'Item 3 description',
-        'price': '$3.00',
-        'image': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg',
-        'quantity': 1,
-        'artist': 'Tião'
-    },
+import {Product} from "../domain/Product";
+import {artistA, artistB, artistC} from "./ArtistsData";
 
-    {
-        'id': 4,
-        'title': 'Item 3',
-        'description': 'Item 3 description',
-        'price': '$3.00',
-        'image': 'https://picsum.photos/200/300?image=3',
-        'quantity': 2,
-        'artist': 'Tião'
-    },
+const url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg';
 
-    {
-        'id': 2,
-        'title': 'Item 3',
-        'description': 'Item 3 description',
-        'price': '$3.00',
-        'image': 'https://picsum.photos/200/300?image=3',
-        'quantity': 1,
-        'artist': 'Tião'
-    },
-
-    {
-        'id':14,
-        'title': 'Item 3',
-        'description': 'Item 3 description',
-        'price': '$3.00',
-        'image': 'https://s1.static.brasilescola.uol.com.br/be/conteudo/images/van-gogh-produziu-a-noite-estrelada-quando-estava-internado-em-um-hospital-psiquiatrico-em-1889-na-franca-5aaa957cb5181.jpg',
-        'quantity': 1,
-        'artist': 'vAN gROGUE'
-    },
-
-    {
-        'id': 3,
-        'title': 'Item 3',
-        'description': 'Item 3 description',
-        'price': '$3.00',
-        'image': 'https://picsum.photos/200/300?image=3',
-        'quantity': 1,
-        'artist': 'Tião'
-    },
-
-    {
-        'id': 3,
-        'title': 'Item 3',
-        'description': 'Item 3 description',
-        'price': '$3.00',
-        'image': 'https://picsum.photos/200/300?image=3',
-        'quantity': 1,
-        'artist': 'Tião'
-    }
+// Fake products data
+export let products = [
+    new Product({id: 1, title: "Produto 1", description: "Descrição 1", quantityInStock: 2, price: 2, image: url, artist: artistA}),
+    new Product({id: 2, title: "Produto 2", description: "Descrição 2", quantityInStock: 0, price: 2, image: url, artist: artistB}),
+    new Product({id: 3, title: "Produto 3", description: "Descrição 3", quantityInStock: 4, price: 2, image: url, artist: artistC}),
 ];

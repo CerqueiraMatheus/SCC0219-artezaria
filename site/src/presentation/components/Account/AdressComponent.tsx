@@ -25,3 +25,5 @@ function AddressComponent (address: Address) {
         </Grid>
     )
 }
+
+export default AddressComponent;

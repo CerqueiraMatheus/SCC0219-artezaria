@@ -4,8 +4,13 @@ import Box from "@mui/material/Box";
 import { UserContext } from "../context/UserContext";
 import { Avatar, Card, Container, Divider, Grid, Stack, TextField, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
+import AddressCard from "../components/Account/AdressCard";
+import { user } from "../../data/UserData";
 
 function EditProfilePage() {
+
+	let loggedUser = user;
+
     const spacing = 2
     return (
         <Grid container spacing={spacing}>
@@ -19,9 +24,9 @@ function EditProfilePage() {
                             Dados
                         </Typography>
                         <Stack spacing={spacing} alignItems='center'>
-                            <TextField fullWidth id="outlined-basic" label="Nome" variant="outlined" />
-                            <TextField fullWidth id="outlined-basic" label="Sobrenome" variant="outlined" />
-                            <TextField fullWidth id="outlined-basic" label="Email" variant="outlined" />
+                            <TextField fullWidth id="outlined-basic" label="Nome" variant="outlined" defaultValue={loggedUser.name}/>
+                            <TextField fullWidth id="outlined-basic" label="Sobrenome" variant="outlined" defaultValue={loggedUser.lastName}/>
+                            <TextField fullWidth id="outlined-basic" label="Email" variant="outlined" defaultValue={loggedUser.email}/>
                         </Stack>
                     </Card>
 
@@ -38,56 +43,7 @@ function EditProfilePage() {
                 </Stack>
             </Grid>
             <Grid item xs={7}>
-                <Card raised sx={{padding: 5}}>
-                    <Typography variant='h4' textAlign='center' gutterBottom>
-                        Endereços
-                    </Typography> 
-                    <Stack 
-                      spacing={spacing} 
-                      alignItems='center'
-                      divider={<Divider orientation="horizontal" flexItem />}>
-                        <Grid container spacing={2}>
-                          <Grid item xs={12}>
-                            <TextField fullWidth id="outlined-basic" label="Rua" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={4}>
-                            <TextField fullWidth id="outlined-basic" label="Número" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={4}>
-                            <TextField fullWidth id="outlined-basic" label="Complemento" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={4}>
-                            <TextField fullWidth id="outlined-basic" label="CEP" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={8}>
-                            <TextField fullWidth id="outlined-basic" label="Cidade" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={4}>
-                            <TextField fullWidth id="outlined-basic" label="Estado" variant="outlined" />
-                          </Grid>
-                        </Grid>
-                        <Grid container spacing={2}>
-                          <Grid item xs={12}>
-                            <TextField fullWidth id="outlined-basic" label="Rua" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={4}>
-                            <TextField fullWidth id="outlined-basic" label="Número" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={4}>
-                            <TextField fullWidth id="outlined-basic" label="Complemento" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={4}>
-                            <TextField fullWidth id="outlined-basic" label="CEP" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={8}>
-                            <TextField fullWidth id="outlined-basic" label="Cidade" variant="outlined" />
-                          </Grid>
-                          <Grid item xs={4}>
-                            <TextField fullWidth id="outlined-basic" label="Estado" variant="outlined" />
-                          </Grid>
-                        </Grid>
-                    </Stack>  
-                </Card>  
+                <AddressCard addresses={user.address}/>
             </Grid>
         </Grid>
     );

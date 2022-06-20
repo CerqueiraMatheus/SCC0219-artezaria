@@ -1,18 +1,27 @@
-import { Grid } from "@mui/material";
+import { Button, Grid, Stack, Typography } from "@mui/material";
 import {items} from "../../data/ProductsData";
 import ItemAnnouncement from "../components/Item/ItemAnnouncement";
-import ItemCard from "../components/Item/ItemCard";
+import AddIcon from '@mui/icons-material/Add';
+
 
 
 function Adverts() {
     return (
-        <Grid container spacing={2}> 
-        {items?.map((item) => (
-            <Grid item xs={10} sm={6} lg={3} key={item.id}>
-                <ItemAnnouncement {...item} />
+        <Stack spacing={2}>
+            <Stack direction="row" justifyContent={"space-between"}> 
+                <Typography variant='h4' textAlign='left' gutterBottom paddingLeft={3}>Anúncios</Typography>
+                <Button variant="contained" endIcon={<AddIcon />}>Criar</Button>
+            </Stack>
+            
+            <Grid container spacing={2}> 
+                {items?.map((item) => (
+                    <Grid item xs={10} sm={6} lg={3} key={item.id}>
+                        <ItemAnnouncement {...item} />
+                    </Grid>
+                ))}
             </Grid>
-        ))}
-        </Grid>
+        </Stack>
+        
     );
 }
 

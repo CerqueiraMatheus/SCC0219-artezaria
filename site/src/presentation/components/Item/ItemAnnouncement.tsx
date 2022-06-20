@@ -16,7 +16,7 @@ const ItemAnnouncement = (item: Product) => {
     const openProduct = () => navigate(`/item/${item.id}`);
 
     return (
-        <Card sx={{maxWidth: 345, boxShadow: 3, margin: 1}}>
+        <Card sx={{minWidth: 345, boxShadow: 3, margin: 1}}>
             {/* Header */}
             <CardHeader
                 /* Title */
@@ -43,8 +43,8 @@ const ItemAnnouncement = (item: Product) => {
                 </Typography>
 
                 {/* Open */}
-                <Button variant="contained" onClick={openProduct}>
-                    Ver mais
+                <Button variant="contained">
+                    Deletar
                 </Button>
             </CardActions>
         </Card>

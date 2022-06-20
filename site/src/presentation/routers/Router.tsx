@@ -17,22 +17,25 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import ProductDetail from "../pages/ProductDetail";
 import ArtistDetail from "../pages/ArtistDetail";
-import {CartProvider} from "../context/CartContext";
+import {CartContext, CartProvider} from "../context/CartContext";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import {UserContext, UserProvider} from "../context/UserContext";
 import AccountPage from "../pages/Account";
 import {useContext} from "react";
+import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 
 const DashboardRoutes = () => {
     const {isUserLoggedIn} = useContext(UserContext);
+    const {amountOfItemsOnCart} = useContext(CartContext);
 
     return (
         <>
             <ThemeContext>
                 <CssBaseline/>
                 <Header/>
-                <Container sx={{minHeight: "65vh"}}>
+                <Container>
                     <Routes>
                         <Route path='/home' element={<Products/>}/>
                         <Route path='/item/:itemId' element={<ProductDetail/>}/>
@@ -40,13 +43,8 @@ const DashboardRoutes = () => {
                         {!isUserLoggedIn() && <Route path='/signin' element={<SignIn/>}/>}
                         {!isUserLoggedIn() && <Route path='/signup' element={<SignUp/>}/>}
                         {isUserLoggedIn() && <Route path='/account' element={<AccountPage/>}/>}
-                        {/* <Route path='/' element={<ItemListCointainer />} />
-                <Route path='/category/:categoryId' element={<ItemListCointainer />} />
-                <Route path='/search/:term' element={<ItemListCointainer />} />
-                <Route path='/item/:itemId' element={<ItemDetailContainer />} />
-                <Route path='/cart' element={<Cart />} />
-                <Route path='/checkout' element={<Checkout />} /> */}
-
+                        {isUserLoggedIn() && <Route path='/cart' element={<Cart/>}/>}
+                        {amountOfItemsOnCart > 0 && <Route path='/checkout' element={<Checkout/>}/>}
                         <Route path='*' element={<Navigate to='/home'/>}/>
                     </Routes>
                 </Container>

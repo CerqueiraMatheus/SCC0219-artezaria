@@ -1,26 +1,28 @@
-import {useState, createContext} from 'react';
-
-// Interface Item
-export interface InterfaceItem {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    image: string;
-    quantity: number;
-}
+import {useState, createContext, useEffect} from 'react';
+import {Product} from "../../domain/Product";
 
 // Cart Context
 export type CartContextType = {
-    cart: InterfaceItem[];
-    setCart: (cart: InterfaceItem[]) => void;
-    addItemToCart: (item: { id: number, name: string, quantity: number }) => void;
-    removeItemFromCart: (item: number) => void;
-    isInCart: (item: number) => boolean;
-    amountOfItemsOnCart: () => number;
-    totalCartPrice: () => number;
+    cart: Product[];
+    setCart: (cart: Product[]) => void;
+    addItemToCart: (item: Product) => void;
+    removeItemFromCart: (item: Product) => void;
+    isInCart: (item: Product) => boolean;
+    amountOfItemsOnCart: number;
+    totalCartPrice: number;
     resetCart: () => void;
-    getCart: () => any;
+    increaseItemQuantity: (item: Product) => Product;
+    decreaseItemQuantity: (item: Product) => Product;
+}
+
+// Amount of items on cart
+function countSelectedItems(cart: Product[]) {
+    return cart.reduce((acc, cartItem: Product) => (acc += cartItem.quantitySelected), 0);
+}
+
+// Total cart price
+function countSelectedPrice(cart: Product[]) {
+    return cart.reduce((acc, cartItem: Product) => (acc += cartItem.price * cartItem.quantitySelected), 0);
 }
 
 // @ts-ignore
@@ -28,44 +30,80 @@ export const CartContext = createContext<CartContextType>({});
 
 // Cart Provider
 export const CartProvider = ({children}) => {
-    const [cart, setCart] = useState(
-        localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!) : []
+
+    // Cart
+    let [cart, setCart] = useState(
+        (localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!) : []) as Product []
     );
 
+    // Amount counter
+    let [amountOfItemsOnCart, setAmount] = useState(countSelectedItems(cart));
+
+    // Total price
+    let [totalCartPrice, setPrice] = useState(countSelectedPrice(cart));
+
+    // On cart change updates
+    useEffect(() => {
+        updateValues(cart);
+    }, [cart]);
+
+    // Value updater
+    function updateValues(cart: Product[]) {
+        setPrice(countSelectedPrice(cart));
+        setAmount(countSelectedItems(cart));
+    }
+
     // Add item to cart
-    const addItemToCart = (item) => {
+    const addItemToCart = (item: Product) => {
         setCart([...cart, item]);
         localStorage.setItem('cart', JSON.stringify([...cart, item]));
     };
 
     // Remove item from cart
-    const removeItemFromCart = (id) => {
-        setCart(cart.filter((cartItem) => cartItem.id !== id));
+    const removeItemFromCart = (item: Product) => {
+        setCart(cart.filter((cartItem) => cartItem.id !== item.id));
         localStorage.setItem(
             'cart',
-            JSON.stringify(cart.filter((cartItem) => cartItem.id !== id))
+            JSON.stringify(cart.filter((cartItem) => cartItem.id !== item.id))
         );
     };
 
     // Check if item is in cart
-    const isInCart = (itemId) => cart.some((cartItem) => cartItem.id === itemId);
+    const isInCart = (item) => cart.some((cartItem: Product) => cartItem.id === item.id);
 
-    // Amount of items on cart
-    const amountOfItemsOnCart = () =>
-        cart.reduce((acc, item) => (acc += item.quantity), 0);
+    // Increase item of cart
+    const increaseItemQuantity = (item: Product) => {
+        item = new Product(item);
+        item = item.pickOne();
+        let index = cart.map(function (x) {
+            return x.id;
+        }).indexOf(item.id);
+        cart[index] = item;
+        setCart(cart);
+        localStorage.setItem('cart', JSON.stringify([...cart]));
+        updateValues(cart);
+        return item;
+    }
 
-    // Total cart price
-    const totalCartPrice = () =>
-        cart.reduce((acc, item) => (acc += item.price * item.quantity), 0);
+    // Decrease item of cart
+    const decreaseItemQuantity = (item: Product) => {
+        item = new Product(item);
+        item = item.removeOne();
+        let index = cart.map(function (x) {
+            return x.id;
+        }).indexOf(item.id);
+        cart[index] = item;
+        setCart(cart);
+        localStorage.setItem('cart', JSON.stringify([...cart]));
+        updateValues(cart);
+        return item;
+    }
 
     // Reset cart
     const resetCart = () => {
         setCart([]);
         localStorage.setItem('cart', JSON.stringify([]));
     };
-
-    const getCart = () =>
-        cart;
 
     return (
         <CartContext.Provider
@@ -78,7 +116,8 @@ export const CartProvider = ({children}) => {
                 amountOfItemsOnCart,
                 totalCartPrice,
                 resetCart,
-                getCart
+                increaseItemQuantity,
+                decreaseItemQuantity
             }}
         >
             {children}

@@ -7,7 +7,7 @@ const GoBackBtn = () => {
     const handleReturn = () => navigate(-1);
 
     return (
-        <Button startIcon={<ArrowBackIcon/>} onClick={handleReturn}>
+        <Button startIcon={<ArrowBackIcon/>} onClick={handleReturn} color="inherit">
             Voltar
         </Button>
     );

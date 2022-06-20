@@ -1,13 +1,14 @@
 import ItemCard from './ItemCard';
-// import getPageTitle from '../../helpers/getPageTitle';
 import Grid from '@mui/material/Grid';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const ItemList = ({ title, items }) => (
+const ItemList = ({title, items}) => (
     <>
+        {/* Title */}
         <h1 className="left-aligned">{`${title}`}</h1>
 
+        {/* Carousel */}
         <Carousel
             additionalTransfrom={0}
             arrows
@@ -62,6 +63,7 @@ const ItemList = ({ title, items }) => (
             slidesToSlide={1}
             swipeable
         >
+            {/* Items */}
             {items?.map((item) => (
                 <Grid item xs={12} sm={6} lg={3} key={item.id}>
                     <ItemCard {...item} />

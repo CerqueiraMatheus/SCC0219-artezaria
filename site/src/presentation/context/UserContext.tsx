@@ -1,66 +1,37 @@
 import {useState, createContext} from 'react';
+import {User} from "../../domain/User";
+
+// Cart Context
+export type UserContextType = {
+    user: User;
+    setUser: (user: User) => void;
+    resetUser: () => void;
+    isUserLoggedIn: () => boolean;
+}
+
 // @ts-ignore
-export const UserContext = createContext<any>();
+export const UserContext = createContext<UserContextType>();
 
 export const UserProvider = ({children}) => {
-    const [userData, setUserData] = useState({
-        id: 0,
-        name: '',
-        lastName: '',
-        email: '',
-        address: '',
-        cardName: '',
-        cardNumber: '',
-        cardExpDate: '',
-        cardCvv: '',
-    });
-    const [errors, setErrors] = useState({});
+    // User data
+    const [user, setUserData] = useState<User>(new User());
+    const setUser = (user: User) => setUserData(user);
 
-    const setUser = (user) => setUserData(user);
-
-    const handleChange = ({target: {name, value}}) => {
-        setUserData({
-            ...userData,
-            [name]: value,
-        });
-
-        setErrors({
-            ...errors,
-            [name]: '',
-        });
+    // Reset user
+    const resetUser = () => {
+        setUserData(new User());
     };
 
-    const resetUserData = () => {
-        setUserData({
-            id: 0,
-            address: "",
-            cardCvv: "",
-            cardExpDate: "",
-            cardName: "",
-            cardNumber: "",
-            email: "",
-            lastName: "",
-            name: ""
-        });
-        setErrors({});
-    };
-
-    const isUserLoggedIn = () => userData.id !== 0;
-
-    const getUserData = () => userData;
+    // Check logged in
+    const isUserLoggedIn = () => user?.id !== 0;
 
     return (
         <UserContext.Provider
             value={{
-                handleChange,
-                userData,
-                errors,
-                setErrors,
-                setUserData,
-                resetUserData,
-                getUserData,
+                user,
+                setUser,
+                resetUser,
                 isUserLoggedIn,
-                setUser
             }}
         >
             {children}

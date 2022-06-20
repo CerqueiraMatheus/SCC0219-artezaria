@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import {UserContext} from "../context/UserContext";
 
 function AccountPage() {
-    const {resetUserData} = useContext(UserContext);
+    const {resetUser} = useContext(UserContext);
     return (
         <>
             <AccountRowCard title={"Perfil"} description={"Veja e corrija suas informações pessoais"} link={"/profile"}/>

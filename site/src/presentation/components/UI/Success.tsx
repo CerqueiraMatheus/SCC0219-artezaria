@@ -7,10 +7,7 @@ const SuccessSnackbar = ({message}) => {
     const [open, setOpen] = useState(true);
 
     const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
+        if (reason === 'clickaway') return;
         setOpen(false);
     };
 

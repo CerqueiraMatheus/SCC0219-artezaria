@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import {useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {UserContext} from "../context/UserContext";
-import {userData} from "../../data/UserData";
+import {user} from "../../data/UserData";
 
 export default function SignIn() {
     const navigate = useNavigate();
@@ -28,7 +28,8 @@ export default function SignIn() {
             email: data.get('email'),
             password: data.get('password'),
         });
-        setUser(userData);
+        setUser(user);
+        console.log(user);
         navigate('/home');
     };
 

@@ -11,7 +11,7 @@ function AccountPage() {
             <Box sx={{height: 50}}/>
             <AccountRowCard title={"Minhas compras"} description={"Veja e corrija suas informações pessoais"} link={"/purchases"}/>
             <AccountRowCard title={"Anúncios"} description={"Veja e corrija suas informações pessoais"} link={"/adverts"}/>
-            <AccountRowCard title={"Sair"} description={"Veja e corrija suas informações pessoais"} link={"/home"} click={() => resetUserData()}/>
+            <AccountRowCard title={"Sair"} description={"Veja e corrija suas informações pessoais"} link={"/home"} click={() => resetUser()}/>
         </>
     );
 }

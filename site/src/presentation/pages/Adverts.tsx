@@ -1,5 +1,5 @@
 import { Button, Grid, Stack, Typography } from "@mui/material";
-import {items} from "../../data/ProductsData";
+import {products} from "../../data/ProductsData";
 import ItemAnnouncement from "../components/Item/ItemAnnouncement";
 import AddIcon from '@mui/icons-material/Add';
 
@@ -14,14 +14,13 @@ function Adverts() {
             </Stack>
             
             <Grid container spacing={2}> 
-                {items?.map((item) => (
+                {products?.map((item) => (
                     <Grid item xs={10} sm={6} lg={3} key={item.id}>
                         <ItemAnnouncement {...item} />
                     </Grid>
                 ))}
             </Grid>
         </Stack>
-        
     );
 }
 

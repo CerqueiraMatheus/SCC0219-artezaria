@@ -7,8 +7,6 @@ import { deepOrange } from "@mui/material/colors";
 
 function EditProfilePage() {
     const spacing = 2
-    const {resetUserData} = useContext(UserContext);
-
     return (
         <Grid container spacing={spacing}>
             <Grid item xs={12}>

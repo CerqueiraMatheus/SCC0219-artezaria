@@ -7,46 +7,49 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import {Button} from '@mui/material';
 import Link from "@mui/material/Link";
+import { Product } from '../../../domain/Product';
 
-const ItemAnnouncement = ({id, title, description, price, image, quantity, artist}) => {
+const ItemAnnouncement = (item: Product) => {
 
+    // Navigation handlers
     const navigate = useNavigate();
-    const openProduct = () => navigate(`/item/${id}`);
+    const openProduct = () => navigate(`/item/${item.id}`);
 
     return (
         <Card sx={{maxWidth: 345, boxShadow: 3, margin: 1}}>
+            {/* Header */}
             <CardHeader
-                title={
-                    <Link 
-                        variant="body1" 
-                        onClick={openProduct} 
-                        component="button" 
-                        underline="none"
-                        color="text.primary">
-                        {title}
-                    </Link>
-                }
-                style={
-                    {textAlign: 'left'}
-                }
+                /* Title */
+                title={<Link variant="body1" onClick={openProduct} component="button" underline="none"
+                             color="text.primary">
+                    {item.title}
+                </Link>}
+                style={{textAlign: 'left'}}
             />
+
+            {/* Image */}
             <CardMedia
                 component="img"
                 height="280"
-                image={image}
+                image={item.image}
                 alt="Paella dish"
+                onClick={openProduct}
             />
+            {/* Actions */}
             <CardActions sx={{display: 'flex', justifyContent: 'space-around'}}>
+                {/* Price */}
                 <Typography variant='h4' align='left'>
-                    {price}
+                    R${item.price}
                 </Typography>
 
+                {/* Open */}
                 <Button variant="contained" onClick={openProduct}>
-                    Excluir
+                    Ver mais
                 </Button>
             </CardActions>
         </Card>
-    );
+    )
+        ;
 }
 
 export default ItemAnnouncement;

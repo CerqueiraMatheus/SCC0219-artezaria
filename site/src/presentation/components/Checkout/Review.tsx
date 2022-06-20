@@ -55,7 +55,7 @@ export default function Review() {
                         Entrega
                     </Typography>
                     <Typography gutterBottom>{user.name}</Typography>
-                    <Typography gutterBottom>{user.address}</Typography>
+                    <Typography gutterBottom>{user.address.toString()}</Typography>
                 </Grid>
 
                 {/* Payment */}

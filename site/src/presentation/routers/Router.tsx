@@ -24,6 +24,7 @@ import {UserContext, UserProvider} from "../context/UserContext";
 import AccountPage from "../pages/Account";
 import {useContext} from "react";
 import EditProfilePage from '../pages/EditProfile';
+import Adverts from '../pages/Adverts';
 
 const DashboardRoutes = () => {
     const {isUserLoggedIn} = useContext(UserContext);
@@ -42,6 +43,7 @@ const DashboardRoutes = () => {
                         {!isUserLoggedIn() && <Route path='/signup' element={<SignUp/>}/>}
                         {isUserLoggedIn() && <Route path='/account' element={<AccountPage/>}/>}
                         {isUserLoggedIn() && <Route path='/profile' element={<EditProfilePage/>}/>}
+                        {isUserLoggedIn() && <Route path='/adverts' element={<Adverts/>}/>}
                         {/* <Route path='/' element={<ItemListCointainer />} />
                 <Route path='/category/:categoryId' element={<ItemListCointainer />} />
                 <Route path='/search/:term' element={<ItemListCointainer />} />

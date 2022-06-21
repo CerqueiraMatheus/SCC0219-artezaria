@@ -24,8 +24,11 @@ import SignUp from "../pages/SignUp";
 import {UserContext, UserProvider} from "../context/UserContext";
 import AccountPage from "../pages/Account";
 import {useContext} from "react";
+import EditProfilePage from '../pages/EditProfile';
+import Adverts from '../pages/Adverts';
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
+import CreateAdvert from '../pages/CreateAdvert';
 
 const DashboardRoutes = () => {
     const {isUserLoggedIn} = useContext(UserContext);
@@ -45,6 +48,9 @@ const DashboardRoutes = () => {
                         {!isUserLoggedIn() && <Route path='/signin' element={<SignIn/>}/>}
                         {!isUserLoggedIn() && <Route path='/signup' element={<SignUp/>}/>}
                         {isUserLoggedIn() && <Route path='/account' element={<AccountPage/>}/>}
+                        {isUserLoggedIn() && <Route path='/profile' element={<EditProfilePage/>}/>}
+                        {isUserLoggedIn() && <Route path='/adverts' element={<Adverts/>}/>}
+                        {isUserLoggedIn() && <Route path='/create' element={<CreateAdvert/>}/>}
                         {isUserLoggedIn() && <Route path='/cart' element={<Cart/>}/>}
                         {amountOfItemsOnCart > 0 && <Route path='/checkout' element={<Checkout/>}/>}
                         <Route path='*' element={<Navigate to='/home'/>}/>

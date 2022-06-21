@@ -28,3 +28,8 @@ export const user = new User({
         address: addresses
     }
 );
+
+export const Users = [
+    user,
+    new User({id: 2, name: 'Matheus', lastName: 'Sousa', email: 'matheus.ventura_de_sousa007@usp.br', address: 'Rua do balacobaco, 007' }),
+]

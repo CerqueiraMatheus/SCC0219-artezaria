@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 import { products } from '../../data/ProductsData';
 import SearchIcon from '@mui/icons-material/Search';
-import ManagmentProductItem from '../components/Management/ManagmentUserItem';
+import ManagementProductItem from '../components/Management/ManagmentProductItem';
 import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 
@@ -32,7 +32,7 @@ const ManagementProduct = () => {
         <Box component='div'>
             <Grid container spacing={3} sx={{mt : 0, display: 'flex', justifyContent: 'center'}}>            
                 {products.length > 0 ? (products.map((product) => (
-                    <ManagmentProductItem {...product} />
+                    <ManagementProductItem {...product} />
                 ))) : (
                     <Typography variant='h4'> Não há resultados!</Typography>
                 )}

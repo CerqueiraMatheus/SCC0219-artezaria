@@ -1,15 +1,7 @@
 import {Routes, Route, Navigate, useNavigate} from 'react-router-dom';
 
-// import NavBar from '../components/Navigation/Nav';
-
 import Header from '../components/Navigation/Header';
 import Footer from '../components/Navigation/Footer';
-
-// import Navbar from '../components/NavBar/NavBar';
-// import ItemListCointainer from '../components/Item/ItemListCointainer';
-// import ItemDetailContainer from '../components/Item/ItemDetailContainer';
-// import Cart from '../components/Cart/Cart';
-// import Checkout from '../components/Checkout/Checkout';
 
 import ManagementProduct from '../pages/ManagementProduct';
 import Products from '../pages/Products';
@@ -28,6 +20,8 @@ import EditProfilePage from '../pages/EditProfile';
 import Adverts from '../pages/Adverts';
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
+import ManagementUser from  '../pages/ManagementUser';
+import Management from '../pages/Management';
 import CreateAdvert from '../pages/CreateAdvert';
 
 const DashboardRoutes = () => {
@@ -53,6 +47,10 @@ const DashboardRoutes = () => {
                         {isUserLoggedIn() && <Route path='/create' element={<CreateAdvert/>}/>}
                         {isUserLoggedIn() && <Route path='/cart' element={<Cart/>}/>}
                         {amountOfItemsOnCart > 0 && <Route path='/checkout' element={<Checkout/>}/>}
+                        {<Route path='/management/user' element={<ManagementUser />}/>}
+                        {/* Adicionar uma nova rota para a página management considerando uma flag de usuário admin */}
+                        {/* A rota abaixo é apenas uma rota temporária */}
+                        <Route path='/management' element={<Management />}/>
                         <Route path='*' element={<Navigate to='/home'/>}/>
                     </Routes>
                 </Container>

@@ -26,6 +26,8 @@ import AccountPage from "../pages/Account";
 import {useContext} from "react";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
+import ManagementUser from  '../pages/ManagementUser';
+
 
 const DashboardRoutes = () => {
     const {isUserLoggedIn} = useContext(UserContext);
@@ -47,6 +49,7 @@ const DashboardRoutes = () => {
                         {isUserLoggedIn() && <Route path='/account' element={<AccountPage/>}/>}
                         {isUserLoggedIn() && <Route path='/cart' element={<Cart/>}/>}
                         {amountOfItemsOnCart > 0 && <Route path='/checkout' element={<Checkout/>}/>}
+                        {<Route path='/management/user' element={<ManagementUser />}/>}
                         <Route path='*' element={<Navigate to='/home'/>}/>
                     </Routes>
                 </Container>

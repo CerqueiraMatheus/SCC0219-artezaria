@@ -9,3 +9,8 @@ export const user = new User({
         address: "Rua dos bobos, 0"
     }
 );
+
+export const Users = [
+    user,
+    new User({id: 2, name: 'Matheus', lastName: 'Sousa', email: 'matheus.ventura_de_sousa007@usp.br', address: 'Rua do balacobaco, 007' }),
+]

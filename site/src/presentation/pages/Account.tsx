@@ -9,9 +9,9 @@ function AccountPage() {
         <>
             <AccountRowCard title={"Perfil"} description={"Veja e corrija suas informações pessoais"} link={"/home"}/>
             <Box sx={{height: 50}}/>
-            <AccountRowCard title={"Minhas compras"} description={"Veja e corrija suas informações pessoais"} link={"/home"}/>
-            <AccountRowCard title={"Anunciar"} description={"Veja e corrija suas informações pessoais"} link={"/home"}/>
-            <AccountRowCard title={"Sair"} description={"Veja e corrija suas informações pessoais"} link={"/home"} click={() => resetUser()}/>
+            <AccountRowCard title={"Minhas compras"} description={"Verifique suas compras realizadas"} link={"/home"}/>
+            <AccountRowCard title={"Anunciar"} description={"Anuncie um novo produto"} link={"/home"}/>
+            <AccountRowCard title={"Sair"} description={"Sair da conta"} link={"/home"} click={() => resetUser()}/>
         </>
     );
 }

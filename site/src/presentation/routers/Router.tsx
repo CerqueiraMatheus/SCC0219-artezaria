@@ -27,6 +27,7 @@ import {useContext} from "react";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import ManagementUser from  '../pages/ManagementUser';
+import Management from '../pages/Management';
 
 
 const DashboardRoutes = () => {
@@ -50,6 +51,9 @@ const DashboardRoutes = () => {
                         {isUserLoggedIn() && <Route path='/cart' element={<Cart/>}/>}
                         {amountOfItemsOnCart > 0 && <Route path='/checkout' element={<Checkout/>}/>}
                         {<Route path='/management/user' element={<ManagementUser />}/>}
+                        {/* Adicionar uma nova rota para a página management considerando uma flag de usuário admin */}
+                        {/* A rota abaixo é apenas uma rota temporária */}
+                        <Route path='/management' element={<Management />}/>
                         <Route path='*' element={<Navigate to='/home'/>}/>
                     </Routes>
                 </Container>

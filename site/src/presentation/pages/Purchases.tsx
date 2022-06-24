@@ -7,20 +7,12 @@ const Purchases = () => {
         <Stack>
             <Typography variant="h4">Minhas Compras</Typography>
             <Divider sx={{marginBottom: 5}}/>
-
             <Grid container>
-                <Grid item xs={4}>
-                    <PurchaseItem {...PRODUCTS[0]}/>
-                </Grid>
-                <Grid item xs={4}>
-                    <PurchaseItem {...PRODUCTS[0]}/>
-                </Grid>
-                <Grid item xs={4}>
-                    <PurchaseItem {...PRODUCTS[0]}/>
-                </Grid>
-                <Grid item xs={4}>
-                    <PurchaseItem {...PRODUCTS[0]}/>
-                </Grid>
+                {PRODUCTS?.map((item) => (
+                    <Grid item xs={4} key={item.id}>
+                        <PurchaseItem {...item} />
+                    </Grid>
+                ))}
             </Grid>
         </Stack>
     );

@@ -11,12 +11,14 @@ import {CartContext} from "../../context/CartContext";
 import {useNavigate} from 'react-router-dom';
 import Link from "@mui/material/Link";
 import {UserContext} from "../../context/UserContext";
+import {UserTypes} from "../../../domain/User";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 export default function PrimarySearchAppBar() {
     const {amountOfItemsOnCart} = useContext(CartContext);
     const navigate = useNavigate();
     const handleNavigation = () => navigate(`/home`);
-    const {isUserLoggedIn} = useContext(UserContext);
+    const {user, isUserLoggedIn} = useContext(UserContext);
 
     return (
         <Box sx={{flexGrow: 1, marginBottom: "2%"}}>
@@ -38,19 +40,28 @@ export default function PrimarySearchAppBar() {
                     {/* Actions */}
                     <Box component="div" sx={{flexGrow: 1}}>
 
-                        {/* Cart */}
-                        <IconButton color="inherit" size="large"
-                                    onClick={isUserLoggedIn() ? () => navigate('/cart') : () => navigate('/signin')}>
-                            <Badge badgeContent={amountOfItemsOnCart} color="error">
-                                <ShoppingCartIcon/>
-                            </Badge>
-                        </IconButton>
+                        {user.type !== UserTypes.ADMIN ? (
+                                <>
+                                    {/* Cart */}
+                                    <IconButton color="inherit" size="large"
+                                                onClick={isUserLoggedIn() ? () => navigate('/cart') : () => navigate('/signin')}>
+                                        <Badge badgeContent={amountOfItemsOnCart} color="error">
+                                            <ShoppingCartIcon/>
+                                        </Badge>
+                                    </IconButton>
 
-                        {/* Profile */}
-                        <IconButton color="inherit" size="large"
-                                    onClick={isUserLoggedIn() ? () => navigate('/account') : () => navigate('/signin')}>
-                            <AccountCircleIcon/>
-                        </IconButton>
+                                    {/* Profile */}
+                                    <IconButton color="inherit" size="large"
+                                                onClick={isUserLoggedIn() ? () => navigate('/account') : () => navigate('/signin')}>
+                                        <AccountCircleIcon/>
+                                    </IconButton>
+                                </>) :
+                            (
+                                <IconButton color="inherit" size="large"
+                                            onClick={() => navigate('/management')}>
+                                    <AdminPanelSettingsIcon/>
+                                </IconButton>
+                            )}
                     </Box>
 
                 </Toolbar>

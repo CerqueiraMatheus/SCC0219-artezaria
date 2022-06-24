@@ -1,14 +1,26 @@
-import React from "react";
+import React, {useContext} from "react";
 import AccountRowCard from "../components/Account/AccountRowCard";
 import Box from "@mui/material/Box";
 import {UserContext} from "../context/UserContext";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
 
 
 const Management = () => {
+    const {resetUser} = useContext(UserContext);
     return (
         <>
-          <AccountRowCard title={"Gerenciar Anúncios"} description={"Gerencie os anúncios feitos pelos usuários"} link={'/management/product'}/>
-          <AccountRowCard title={'Gerenciar Usuários'} description={"Gerencie os usuários cadastrados no site"} link={'/management/user'} />  
+            {/* Title */}
+            <Typography variant="h4">Gerenciamento</Typography>
+
+            {/* Content */}
+            <Divider sx={{marginBottom: 5}}/>
+            <AccountRowCard title={"Gerenciar Anúncios"} description={"Gerencie os anúncios feitos pelos usuários"}
+                            link={'/management/product'}/>
+            <AccountRowCard title={'Gerenciar Usuários'} description={"Gerencie os usuários cadastrados no site"}
+                            link={'/management/user'}/>
+            <AccountRowCard title={"Sair"} description={"Veja e corrija suas informações pessoais"} link={"/home"}
+                            click={() => resetUser()}/>
         </>
     );
 }

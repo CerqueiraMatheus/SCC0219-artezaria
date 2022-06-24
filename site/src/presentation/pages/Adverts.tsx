@@ -1,30 +1,31 @@
-import { Button, Grid, Stack, Typography } from "@mui/material";
-import {products} from "../../data/ProductsData";
+import {Button, Divider, Grid, Stack, Typography} from "@mui/material";
+import {PRODUCTS} from "../../data/ProductsData";
 import ItemAnnouncement from "../components/Item/ItemAnnouncement";
 import AddIcon from '@mui/icons-material/Add';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import React from "react";
 
 
 function Adverts() {
-    
+
     const navigate = useNavigate();
     const createAdvert = () => navigate(`/create`);
 
     return (
-        <Stack spacing={2}>
-            <Stack direction="row" justifyContent={"space-between"}> 
-                <Typography variant='h4' textAlign='left' gutterBottom paddingLeft={3}>Anúncios</Typography>
-                <Button variant="contained" endIcon={<AddIcon />} onClick={createAdvert}>Criar</Button>
-            </Stack>
-            
-            <Grid container spacing={2}> 
-                {products?.map((item) => (
-                    <Grid item xs={12} sm={6} lg={3} key={item.id}>
+        <>
+            <Typography variant="h4">Meus anúncios</Typography>
+            <Divider sx={{marginBottom: 5}}/>
+            <Button variant="contained" color="secondary" endIcon={<AddIcon/>} onClick={createAdvert}>Criar novo
+                anúncio</Button>
+
+            <Grid container spacing={2} sx={{marginTop: 5}}>
+                {PRODUCTS?.map((item) => (
+                    <Grid item xs={4} key={item.id}>
                         <ItemAnnouncement {...item} />
                     </Grid>
                 ))}
             </Grid>
-        </Stack>
+        </>
     );
 }
 

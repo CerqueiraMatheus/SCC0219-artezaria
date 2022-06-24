@@ -1,4 +1,4 @@
-import {useContext, Fragment} from 'react';
+import React, {useContext, Fragment} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -21,8 +21,9 @@ const Cart = () => {
 
     return (
         <>
+
             {/* Title */}
-            <h2>Carrinho ({amountOfItemsOnCart})</h2>
+            <Typography variant="h4">Carrinho ({amountOfItemsOnCart})</Typography>
 
             {/* Content */}
             <Divider/>

@@ -12,9 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useNavigate} from "react-router-dom";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {UserContext} from "../context/UserContext";
-import {user} from "../../data/UserData";
+import {USERS} from "../../data/UserData";
 
 export default function SignIn() {
     const navigate = useNavigate();
@@ -28,9 +28,12 @@ export default function SignIn() {
             email: data.get('email'),
             password: data.get('password'),
         });
-        setUser(user);
-        console.log(user);
-        navigate('/home');
+        const user = USERS.find(x => x.email === data.get('email')! && x.password === data.get('password')!)!;
+        if (user) {
+            setUser(user);
+            console.log(user);
+            navigate('/home');
+        }
     };
 
     return (
@@ -50,7 +53,7 @@ export default function SignIn() {
                 <Typography component="h1" variant="h5">
                     Entrar
                 </Typography>
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
+                <Box component="form" onSubmit={handleSubmit} sx={{mt: 1}}>
                     <TextField
                         margin="normal"
                         required
@@ -59,6 +62,7 @@ export default function SignIn() {
                         label="Endereço de e-mail"
                         name="email"
                         autoComplete="email"
+                        type="email"
                         autoFocus
                     />
                     <TextField

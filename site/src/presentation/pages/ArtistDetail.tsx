@@ -1,33 +1,36 @@
 import {useParams} from 'react-router-dom';
 
 import Loading from "../components/UI/Loading";
-import {products} from "../../data/ProductsData";
-import {artists} from "../../data/ArtistsData";
+import {PRODUCTS} from "../../data/ProductsData";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import ItemList from "../components/Item/ItemList";
+import {USERS} from "../../data/UserData";
+import {UserTypes} from "../../domain/User";
 
 const ArtistDetail = () => {
     // Get artist infos
     const {artistId} = useParams();
-    let artistTest = artists.find(x => x.id === parseInt(artistId!))!;
+    let artistTest = USERS.find(x => x.id === parseInt(artistId!) && x.type === UserTypes.ARTIST)!;
+    let artistProducts = PRODUCTS.filter(x => x.artist.id === artistTest.id)!;
+    console.log(artistProducts);
 
     return (artistTest ?
             <>
                 {/* Name */}
                 <Typography variant="h3">
-                    {artistTest.name}
+                    {artistTest.name} {artistTest.lastName}
                 </Typography>
 
-                <Divider/>
+                <Divider sx={{marginBottom: 5}}/>
 
                 {/* Description */}
-                <Typography variant="body1" sx={{textAlign: "justify"}}>
+                <Typography variant="body1" display="block" sx={{textAlign: "justify", whiteSpace: 'pre-line'}}>
                     {artistTest.description}
                 </Typography>
 
                 {/* Products */}
-                <ItemList items={products} title={"Veja mais"}/>
+                <ItemList items={artistProducts} title={"Veja mais"}/>
             </> : <Loading/>
     );
 };

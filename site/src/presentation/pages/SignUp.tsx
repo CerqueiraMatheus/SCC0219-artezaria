@@ -10,18 +10,32 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useNavigate} from "react-router-dom";
+import {User, UserTypes} from "../../domain/User";
+import {useContext} from "react";
+import {UserContext} from "../context/UserContext";
 
 export default function SignUp() {
     const navigate = useNavigate();
     const openSignIn = () => navigate(`/signin`);
+    const {setUser} = useContext(UserContext);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+
+        let user = new User({
+            email: data.get('email')!.toString(),
+            password: data.get('password')!.toString(),
+            name: data.get('firstName')!.toString(),
+            lastName: data.get('lastName')!.toString(),
+            address: data.get('address')!.toString(),
+            type: UserTypes.CLIENT,
+            id: 40
         });
+
+        setUser(user);
+        console.log(user);
+        navigate('/home');
     };
 
     return (
@@ -41,7 +55,7 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Cadastro
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
+                <Box component="form" onSubmit={handleSubmit} sx={{mt: 3}}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField

@@ -1,51 +1,111 @@
-import React, {useContext} from "react";
-import AccountRowCard from "../components/Account/AccountRowCard";
+import React, {useContext, useState} from "react";
+import {UserContext} from "../context/UserContext";
+import {Avatar, Card, Container, Divider, Grid, Stack, TextField, Typography} from "@mui/material";
+import {User, UserTypes} from "../../domain/User";
 import Box from "@mui/material/Box";
-import { UserContext } from "../context/UserContext";
-import { Avatar, Card, Container, Divider, Grid, Stack, TextField, Typography } from "@mui/material";
-import { deepOrange } from "@mui/material/colors";
-import AddressCard from "../components/Account/AdressCard";
-import { user } from "../../data/UserData";
+import Button from "@mui/material/Button";
+import {useNavigate} from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 function EditProfilePage() {
+    const {user, updateUser} = useContext(UserContext);
+    const localUser = new User(user);
 
-	let loggedUser = user;
+    const spacing = 2;
+    const navigate = useNavigate();
+    const handleSubmit = () => {
+        console.log(JSON.stringify(localUser))
+        updateUser(localUser);
+        navigate('/home');
+    }
 
-    const spacing = 2
     return (
-        <Grid container spacing={spacing}>
-            <Grid item xs={12}>
-                <Avatar>H</Avatar> 
-            </Grid>
-            <Grid item xs={5}>
-                <Stack spacing={spacing}>
-                    <Card raised sx={{padding: 5}}>
-                        <Typography variant='h4' textAlign='center' gutterBottom>
-                            Dados
-                        </Typography>
-                        <Stack spacing={spacing} alignItems='center'>
-                            <TextField fullWidth id="outlined-basic" label="Nome" variant="outlined" defaultValue={loggedUser.name}/>
-                            <TextField fullWidth id="outlined-basic" label="Sobrenome" variant="outlined" defaultValue={loggedUser.lastName}/>
-                            <TextField fullWidth id="outlined-basic" label="Email" variant="outlined" defaultValue={loggedUser.email}/>
-                        </Stack>
-                    </Card>
+        <>
+            {/* Title */}
+            <Typography variant="h4">Editar perfil</Typography>
+            <Divider sx={{marginBottom: 5}}/>
 
-                    <Card raised sx={{padding: 5}}>
-                        <Typography variant='h4' textAlign='center' gutterBottom>
-                            Cartões
-                        </Typography>
-                        <Stack spacing={spacing} alignItems='center'>
-                            <TextField fullWidth id="outlined-basic" label="Nome Titular" variant="outlined" />
-                            <TextField fullWidth id="outlined-basic" label="Número" variant="outlined" />
-                            <TextField fullWidth id="outlined-basic" label="Validade" variant="outlined" />
-                        </Stack>  
-                    </Card>
+            <Card raised sx={{padding: 5}}>
+                <Typography variant='h4' textAlign='center' gutterBottom>
+                    Dados
+                </Typography>
+                <Stack spacing={spacing} alignItems='center'>
+                    <TextField fullWidth id="outlined-basic" label="Nome" variant="outlined"
+                               defaultValue={localUser.name} onChange={e => {
+                        localUser.name = e.target.value
+                    }} required/>
+                    <TextField fullWidth id="outlined-basic" label="Sobrenome" variant="outlined"
+                               defaultValue={localUser.lastName} onChange={e => {
+                        localUser.lastName = e.target.value
+                    }} required/>
+                    <TextField fullWidth id="outlined-basic" label="Email" variant="outlined"
+                               defaultValue={localUser.email} onChange={e => {
+                        localUser.email = e.target.value
+                    }} required/>
                 </Stack>
-            </Grid>
-            <Grid item xs={7}>
-                <AddressCard addresses={user.address}/>
-            </Grid>
-        </Grid>
+            </Card>
+
+            <div style={{margin: 10}}/>
+
+            {user.type !== UserTypes.ADMIN &&
+                <Card raised sx={{padding: 5}}>
+                    <Typography variant='h4' textAlign='center' gutterBottom>
+                        Endereço
+                    </Typography>
+                    <Grid item xs={12}>
+                        <TextField fullWidth id="outlined-basic" label="Rua" variant="outlined"
+                                   defaultValue={localUser.address} onChange={e => {
+                            localUser.address = e.target.value
+                        }} required/>
+                    </Grid>
+                </Card>}
+
+            <div style={{margin: 10}}/>
+
+            {user.type === UserTypes.ARTIST &&
+                <Card raised sx={{padding: 5}}>
+                    <Typography variant='h4' textAlign='center' gutterBottom>
+                        Biografia
+                    </Typography>
+                    <Grid item xs={12}>
+                        <TextField multiline minRows={2} fullWidth id="standard-basic"
+                                   variant="outlined" defaultValue={localUser.description} onChange={e => {
+                            localUser.description = e.target.value
+                        }} required/>
+                    </Grid>
+                </Card>}
+
+            <div style={{margin: 20}}/>
+
+            {user.type === UserTypes.CLIENT &&
+                <Card raised sx={{padding: 5}}>
+                    <Typography variant='h4' textAlign='center' gutterBottom>
+                        Torne-se um artesão
+                    </Typography>
+                    <Grid item xs={12}>
+                        <FormControlLabel label="Desejo me tornar um artesão e publicar minhas obras" control={
+                            <Checkbox
+                                color="secondary"
+                                onChange={e => {
+                                    localUser.type = e.target.value ? UserTypes.ARTIST : UserTypes.CLIENT
+                                }}
+                                inputProps={{'aria-label': 'controlled'}}
+                            />}
+                        />
+                    </Grid>
+                </Card>}
+
+            <div style={{margin: 20}}/>
+
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleSubmit}
+                type="submit">
+                Salvar
+            </Button>
+        </>
     );
 }
 

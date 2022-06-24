@@ -7,16 +7,17 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import {Button} from '@mui/material';
 import Link from "@mui/material/Link";
-import { Product } from '../../../domain/Product';
+import {Product} from '../../../domain/Product';
 
 const ItemAnnouncement = (item: Product) => {
 
     // Navigation handlers
     const navigate = useNavigate();
     const openProduct = () => navigate(`/item/${item.id}`);
+    const openSold = () => navigate(`/item/${item.id}`);
 
     return (
-        <Card sx={{minWidth: 345, boxShadow: 3, margin: 1}}>
+        <Card sx={{width: 345, boxShadow: 3, margin: 1}}>
             {/* Header */}
             <CardHeader
                 /* Title */
@@ -37,19 +38,18 @@ const ItemAnnouncement = (item: Product) => {
             />
             {/* Actions */}
             <CardActions sx={{display: 'flex', justifyContent: 'space-around'}}>
-                {/* Price */}
-                <Typography variant='h4' align='left'>
-                    R${item.price}
-                </Typography>
+                {/* Open */}
+                <Button variant="contained" onClick={openProduct}>
+                    Ver anúncio
+                </Button>
 
                 {/* Open */}
-                <Button variant="contained">
-                    Deletar
+                <Button variant="contained" color="secondary"  onClick={openSold}>
+                    Ver vendas
                 </Button>
             </CardActions>
         </Card>
-    )
-        ;
+    );
 }
 
 export default ItemAnnouncement;

@@ -1,4 +1,4 @@
-import {Artist} from "./Artist";
+import {User} from "./User";
 
 export class Product {
     id: number = 0;
@@ -9,7 +9,7 @@ export class Product {
     quantityInStock: number = 0;
     quantitySelected: number = 0;
     quantitySold: number = 0;
-    artist: Artist = new Artist();
+    artist: User = new User();
 
     public constructor(init?: Partial<Product>) {
         Object.assign(this, init);

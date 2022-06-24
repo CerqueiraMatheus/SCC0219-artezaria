@@ -55,7 +55,7 @@ export default function Review() {
                         Entrega
                     </Typography>
                     <Typography gutterBottom>{user.name}</Typography>
-                    <Typography gutterBottom>{user.address.toString()}</Typography>
+                    <Typography gutterBottom>{user.address}</Typography>
                 </Grid>
 
                 {/* Payment */}
@@ -63,18 +63,9 @@ export default function Review() {
                     <Typography variant="h6" gutterBottom sx={{mt: 2}}>
                         Pagamento
                     </Typography>
-                    <Grid container>
-                        {payments.map((payment) => (
-                            <React.Fragment key={payment.name}>
-                                <Grid item xs={6}>
-                                    <Typography gutterBottom>{payment.name}</Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography gutterBottom>{payment.detail}</Typography>
-                                </Grid>
-                            </React.Fragment>
-                        ))}
-                    </Grid>
+                    <Typography gutterBottom>{user.creditCard.name}</Typography>
+                    <Typography gutterBottom>{user.creditCard.number}</Typography>
+                    <Typography gutterBottom>{user.creditCard.expiryDate}</Typography>
                 </Grid>
             </Grid>
         </React.Fragment>

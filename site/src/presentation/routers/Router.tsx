@@ -24,6 +24,7 @@ import ManagementUser from '../pages/ManagementUser';
 import Management from '../pages/Management';
 import CreateAdvert from '../pages/CreateAdvert';
 import {UserTypes} from "../../domain/User";
+import Purchases from '../pages/Purchases';
 
 const DashboardRoutes = () => {
     const {user, isUserLoggedIn} = useContext(UserContext);
@@ -56,6 +57,7 @@ const DashboardRoutes = () => {
                             <>
                                 <Route path='/account' element={<AccountPage/>}/>
                                 <Route path='/profile' element={<EditProfilePage/>}/>
+                                <Route path='/purchases' element={<Purchases/>}/>
                                 <Route path='/cart' element={<Cart/>}/>
                                 {amountOfItemsOnCart > 0 && <Route path='/checkout' element={<Checkout/>}/>}
 

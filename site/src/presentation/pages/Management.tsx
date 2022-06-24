@@ -19,7 +19,7 @@ const Management = () => {
                             link={'/management/product'}/>
             <AccountRowCard title={'Gerenciar Usuários'} description={"Gerencie os usuários cadastrados no site"}
                             link={'/management/user'}/>
-            <AccountRowCard title={"Sair"} description={"Veja e corrija suas informações pessoais"} link={"/home"}
+            <AccountRowCard title={"Sair"} description={"Já vai? :("} link={"/home"}
                             click={() => resetUser()}/>
         </>
     );

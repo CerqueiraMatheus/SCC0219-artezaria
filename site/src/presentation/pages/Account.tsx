@@ -14,12 +14,12 @@ function AccountPage() {
             <Divider sx={{marginBottom: 5}}/>
             <AccountRowCard title={"Perfil"} description={"Veja e corrija suas informações pessoais"}
                             link={"/profile"}/>
-            <AccountRowCard title={"Minhas compras"} description={"Veja e corrija suas informações pessoais"}
+            <AccountRowCard title={"Minhas compras"} description={"Acesse o histórico de suas compras"}
                             link={"/purchases"}/>
             {user.type === UserTypes.ARTIST &&
-                <AccountRowCard title={"Anúncios"} description={"Veja e corrija suas informações pessoais"}
+                <AccountRowCard title={"Anúncios"} description={"Gerencie suas vendas e veja os itens anunciados"}
                                 link={"/adverts"}/>}
-            <AccountRowCard title={"Sair"} description={"Veja e corrija suas informações pessoais"} link={"/home"}
+            <AccountRowCard title={"Sair"} description={"Já vai? :("} link={"/home"}
                             click={() => resetUser()}/>
         </>
     );

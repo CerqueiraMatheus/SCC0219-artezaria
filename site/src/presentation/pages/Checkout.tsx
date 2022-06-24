@@ -9,6 +9,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import PaymentForm from "../components/Checkout/Payment";
 import Review from "../components/Checkout/Review";
+import {useContext, useEffect} from "react";
+import {CartContext} from "../context/CartContext";
+import {wait} from "@testing-library/user-event/dist/utils";
 
 // Checkout steps
 const steps = ['Método de pagamento', 'Revisão dos itens'];
@@ -28,6 +31,15 @@ function getStepContent(step: number) {
 export default function Checkout() {
     // Step
     const [activeStep, setActiveStep] = React.useState(0);
+    const {resetCart} = useContext(CartContext);
+
+
+    useEffect(() => {
+            if (activeStep === steps.length) {
+                wait(5000).then(() => resetCart());
+            }
+        }, [activeStep, resetCart]
+    );
 
     // Next handler
     const handleNext = () => {

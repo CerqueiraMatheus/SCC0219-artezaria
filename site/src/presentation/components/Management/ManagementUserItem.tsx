@@ -40,17 +40,22 @@ const ManagementUserItem = (user: User) => {
                 mt: 'auto',
                 mb: 'auto',
                 ml: 'auto',
-                mr: 4,
                 display: 'flex',
                 justifyContent: 'space-between',
                 marginLeft: 'auto',
                 borderSpacing: 2
             }}>
-                {curUser.type === UserTypes.ARTIST && <Button variant="contained" color="inherit" onClick={() => {
-                    navigate('/account')
-                }}>Ver perfil</Button>}
-                <Button variant='contained' color='inherit'>Tornar Admin</Button>
-                <Button variant="contained" color="secondary" onClick={handleRemove}>Excluir</Button>
+                {curUser.type === UserTypes.ARTIST &&
+                    <Button sx={{margin: 1}} variant="contained" color="inherit" onClick={() => {
+                        navigate('/artist/' + curUser.id)
+                    }}>Ver perfil</Button>}
+                {curUser.type !== UserTypes.ADMIN && (
+                    <>
+                        <Button variant='contained' color='inherit' sx={{margin: 1}}>Tornar Admin</Button>
+                        <Button variant="contained" color="secondary" onClick={handleRemove}
+                                sx={{margin: 1}}>Excluir</Button>
+                    </>
+                )}
             </Box>
         </Card>
     );

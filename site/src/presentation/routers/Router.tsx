@@ -20,13 +20,15 @@ import EditProfilePage from '../pages/EditProfile';
 import Adverts from '../pages/Adverts';
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
-import ManagementUser from  '../pages/ManagementUser';
+import ManagementUser from '../pages/ManagementUser';
 import Management from '../pages/Management';
 import CreateAdvert from '../pages/CreateAdvert';
+import {UserTypes} from "../../domain/User";
 
 const DashboardRoutes = () => {
-    const {isUserLoggedIn} = useContext(UserContext);
+    const {user, isUserLoggedIn} = useContext(UserContext);
     const {amountOfItemsOnCart} = useContext(CartContext);
+    console.log(user.type);
 
     return (
         <>
@@ -35,23 +37,48 @@ const DashboardRoutes = () => {
                 <Header/>
                 <Container>
                     <Routes>
-                        <Route path='/home' element={<Products/>}/>
                         <Route path='/item/:itemId' element={<ProductDetail/>}/>
                         <Route path='/artist/:artistId' element={<ArtistDetail/>}/>
-                        <Route path='/management/product' element={<ManagementProduct/>}/>s
-                        {!isUserLoggedIn() && <Route path='/signin' element={<SignIn/>}/>}
-                        {!isUserLoggedIn() && <Route path='/signup' element={<SignUp/>}/>}
-                        {isUserLoggedIn() && <Route path='/account' element={<AccountPage/>}/>}
-                        {isUserLoggedIn() && <Route path='/profile' element={<EditProfilePage/>}/>}
-                        {isUserLoggedIn() && <Route path='/adverts' element={<Adverts/>}/>}
-                        {isUserLoggedIn() && <Route path='/create' element={<CreateAdvert/>}/>}
-                        {isUserLoggedIn() && <Route path='/cart' element={<Cart/>}/>}
-                        {amountOfItemsOnCart > 0 && <Route path='/checkout' element={<Checkout/>}/>}
-                        {<Route path='/management/user' element={<ManagementUser />}/>}
-                        {/* Adicionar uma nova rota para a página management considerando uma flag de usuário admin */}
-                        {/* A rota abaixo é apenas uma rota temporária */}
-                        <Route path='/management' element={<Management />}/>
-                        <Route path='*' element={<Navigate to='/home'/>}/>
+                        <Route path='/signin' element={<SignIn/>}/>
+                        <Route path='/signup' element={<SignUp/>}/>
+
+                        {/* General home and redirects */}
+                        {
+                            (!isUserLoggedIn() || user.type !== (UserTypes.ADMIN)) &&
+                            <>
+                                <Route path='/home' element={<Products/>}/>
+                                <Route path='*' element={<Navigate to='/home'/>}/>
+                            </>
+                        }
+
+                        {/* When logged in */}
+                        {(user.type === UserTypes.CLIENT || user.type === UserTypes.ARTIST) && (
+                            <>
+                                <Route path='/account' element={<AccountPage/>}/>
+                                <Route path='/profile' element={<EditProfilePage/>}/>
+                                <Route path='/cart' element={<Cart/>}/>
+                                {amountOfItemsOnCart > 0 && <Route path='/checkout' element={<Checkout/>}/>}
+
+                                {/* Artist specific */}
+                                {user.type === UserTypes.ARTIST && (
+                                    <>
+                                        <Route path='/adverts' element={<Adverts/>}/>
+                                        <Route path='/create' element={<CreateAdvert/>}/>
+                                    </>
+                                )}
+                            </>
+                        )}
+
+                        {/* Admin specific*/}
+                        {user.type === (UserTypes.ADMIN) && (
+                            <>
+                                <Route path='/management' element={<Management/>}/>
+                                <Route path='/management/user' element={<ManagementUser/>}/>
+                                <Route path='/management/product' element={<ManagementProduct/>}/>
+                                <Route path='*' element={<Navigate to='/management'/>}/>
+                            </>
+                        )}
+
                     </Routes>
                 </Container>
                 <Footer/>

@@ -1,5 +1,6 @@
-import {useState, createContext, useEffect} from 'react';
+import {useState, createContext, useEffect, useContext} from 'react';
 import {Product} from "../../domain/Product";
+import {UserContext} from "./UserContext";
 
 // Cart Context
 export type CartContextType = {
@@ -31,6 +32,8 @@ export const CartContext = createContext<CartContextType>({});
 // Cart Provider
 export const CartProvider = ({children}) => {
 
+    const {user} = useContext(UserContext);
+
     // Cart
     let [cart, setCart] = useState(
         (localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!) : []) as Product []
@@ -46,6 +49,10 @@ export const CartProvider = ({children}) => {
     useEffect(() => {
         updateValues(cart);
     }, [cart]);
+
+    useEffect(() => {
+        if (user.id === 0) resetCart();
+    }, [user]);
 
     // Value updater
     function updateValues(cart: Product[]) {

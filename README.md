@@ -98,11 +98,11 @@ O código-fonte do protótipo está disposto sob a pasta `site`. Nela, está a p
 
 ### 4.1. Para o protótipo
 
-Atualmente, basta realizar o download do repositório, navegar até a pasta em que estão dispostos os protótipos desenvolvidos e abrir num navegador web.
+Basta realizar o download do repositório, navegar até a pasta em que estão dispostos os protótipos desenvolvidos e abrir num navegador web.
 
 ### 4.2. Para a versão em produção
 
-No Ubuntu, instale o `npm` e, para construir projetos em React, use `npm install create-react-app`. Para executar o projeto, dentro da pasta `site`, execute `npm start`.
+No Ubuntu, instale o `npm` e, para construir projetos em React, use `npm install create-react-app`. Para executar o projeto, clone o repositório e, dentro da pasta `site`, execute `npm start`.
 
 ## 5. Plano de testes
 

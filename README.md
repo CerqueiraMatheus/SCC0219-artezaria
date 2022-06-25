@@ -119,7 +119,7 @@ Os itens marcados com ¹ representam interfaces funcionais (telas e botões), ma
 * Faça *login* com o usuário padrão de cliente, e-mail `cliente@site.com` e senha `cliente123`;
 * A tela inicial deve ser exibida com os produtos. Acesse uma página de produto com `ver mais` de um dos produtos; alternativamente, ao clicar no nome do artista da obra, deve ocorrer um redirecionamento para a página do artista.
 * Clique em `terminar minha compra` ou clique no ícone de carrinho para ser redirecionado à página de carrinho; nela, alterer a quantidade e veja os campos se alterarem junots; alternativamente, exclua o item.
-* Clique em `ir ao pagamento` para iniciar o checkout; insira seus dados, clique em `próximo`, veja a confirmação da compra e clique em `finalizar`.
+* Clique em `ir ao pagamento` para iniciar o checkout; insira seus dados¹, clique em `próximo`, veja a confirmação da compra¹ e clique em `finalizar`.
 * Ao finalizar, uma mensagem de confirmação é exibida, o carrinho resetado e retorna-se à página inicial.
 
 #### b. Artesão
@@ -136,7 +136,7 @@ Os itens marcados com ¹ representam interfaces funcionais (telas e botões), ma
 * Faça *login* com o usuário padrão de administrador, e-mail `admin@site.com` e senha `admin123`;
 * A tela inicial deve mostrar apenas as opções de gerenciamento; o cabeçalho deve mostrar apenas o ícone de gerenciamento;
 * Clique em `gerenciar anúncios` para acessar a tela de gerenciamento de anúncios¹;
-* Alternativamente, clique em `gerenciar usuários` para acessar a tela de gerenciamento de usuários
+* Alternativamente, clique em `gerenciar usuários` para acessar a tela de gerenciamento de usuários¹
 	- Se o usuário for do tipo `cliente`, não deve haver a opção de `ver perfil`;
 	- Se o usuário for do tipo `administrador`, não deve haver a opção de `excluir`.
 

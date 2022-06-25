@@ -74,8 +74,7 @@ const ItemCard = (item: Product) => {
                 </Button>
             </CardActions>
         </Card>
-    )
-        ;
+    );
 }
 
 export default ItemCard;

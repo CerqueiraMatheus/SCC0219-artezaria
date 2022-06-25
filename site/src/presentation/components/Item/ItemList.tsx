@@ -1,9 +1,10 @@
 import ItemCard from './ItemCard';
 import Grid from '@mui/material/Grid';
 import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
-const ItemList = ({title, items}) => (
-    <>
+const ItemList = ({title, items}) => {
+    return (<>
         {/* Title */}
         <h1 className="left-aligned">{`${title}`}</h1>
 
@@ -63,13 +64,13 @@ const ItemList = ({title, items}) => (
             swipeable
         >
             {/* Items */}
-            {items?.map((item) => (
+            {items.map((item) => (
                 <Grid item xs={12} sm={6} lg={3} key={item.id}>
                     <ItemCard {...item} />
                 </Grid>
             ))}
         </Carousel>
-    </>
-);
+    </>)
+};
 
 export default ItemList;

@@ -15,11 +15,13 @@ import {useNavigate} from "react-router-dom";
 import {useContext, useState} from "react";
 import {UserContext} from "../context/UserContext";
 import {USERS} from "../../data/UserData";
+import ErrorSnackbar from "../components/UI/Error";
 
 export default function SignIn() {
     const navigate = useNavigate();
     const openSignUp = () => navigate(`/signup`);
     const {setUser} = useContext(UserContext);
+    const [showErrorBar, setShowErrorBar] = useState(false);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -33,6 +35,8 @@ export default function SignIn() {
             setUser(user);
             console.log(user);
             navigate('/home');
+        } else {
+            setShowErrorBar(true);
         }
     };
 
@@ -63,6 +67,7 @@ export default function SignIn() {
                         name="email"
                         autoComplete="email"
                         type="email"
+                        onChange={() => setShowErrorBar(false)}
                         autoFocus
                     />
                     <TextField
@@ -71,6 +76,7 @@ export default function SignIn() {
                         fullWidth
                         name="password"
                         label="Senha"
+                        onChange={() => setShowErrorBar(false)}
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -102,6 +108,8 @@ export default function SignIn() {
                     </Grid>
                 </Box>
             </Box>
+            {/* Success */}
+            {showErrorBar && (<ErrorSnackbar message={"Usuário não encontrado!"}/>)}
         </Container>
     );
 }

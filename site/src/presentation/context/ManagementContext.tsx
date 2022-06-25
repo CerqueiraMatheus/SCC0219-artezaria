@@ -1,4 +1,4 @@
-import {useState, createContext, useContext} from 'react';
+import {useState, createContext} from 'react';
 import {User} from "../../domain/User";
 import {Product} from "../../domain/Product";
 

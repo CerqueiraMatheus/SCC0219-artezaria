@@ -1,7 +1,6 @@
 import ItemCard from './ItemCard';
 import Grid from '@mui/material/Grid';
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 
 const ItemList = ({title, items}) => (
     <>

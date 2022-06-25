@@ -11,7 +11,7 @@ const PurchaseItem = (item: Product) => {
                 <Stack>
                     <Typography variant='h6'>{item.title}</Typography>
                     <Box>
-                        <Typography variant="body2"> Preço </Typography>
+                        <Typography variant="body2">{item.artist.name} {item.artist.lastName}</Typography>
                         <Typography variant='inherit'>{'R$' + item.price}</Typography>
                     </Box>
                 </Stack>

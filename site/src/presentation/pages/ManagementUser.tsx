@@ -3,7 +3,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import ManagementUserItem from '../components/Management/ManagementUserItem';
 import TextField from '@mui/material/TextField';

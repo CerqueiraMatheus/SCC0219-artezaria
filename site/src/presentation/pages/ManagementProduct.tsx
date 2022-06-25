@@ -3,7 +3,6 @@ import React, {useContext} from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import InputAdornment from '@mui/material/InputAdornment';
 import {PRODUCTS} from '../../data/ProductsData';
 import SearchIcon from '@mui/icons-material/Search';
 import ManagementProductItem from '../components/Management/ManagementProductItem';

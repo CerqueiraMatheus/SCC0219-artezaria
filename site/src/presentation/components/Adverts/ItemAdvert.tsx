@@ -4,17 +4,16 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
-import Typography from '@mui/material/Typography';
 import {Button} from '@mui/material';
 import Link from "@mui/material/Link";
 import {Product} from '../../../domain/Product';
 
-const ItemAnnouncement = (item: Product) => {
+const ItemAdvert = (item: Product) => {
 
     // Navigation handlers
     const navigate = useNavigate();
     const openProduct = () => navigate(`/item/${item.id}`);
-    const openSold = () => navigate(`/item/${item.id}`);
+    const openSold = () => navigate(`/adverts/purchases/${item.id}`);
 
     return (
         <Card sx={{width: 345, boxShadow: 3, margin: 1}}>
@@ -52,4 +51,4 @@ const ItemAnnouncement = (item: Product) => {
     );
 }
 
-export default ItemAnnouncement;
+export default ItemAdvert;

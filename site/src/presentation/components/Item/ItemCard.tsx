@@ -58,7 +58,6 @@ const ItemCard = (item: Product) => {
                 component="img"
                 height="280"
                 image={item.image}
-                alt="Paella dish"
                 onClick={openProduct}
             />
 

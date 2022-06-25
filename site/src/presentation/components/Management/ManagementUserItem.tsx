@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Typography from '@mui/material/Typography';
 
 import Card from '@mui/material/Card';

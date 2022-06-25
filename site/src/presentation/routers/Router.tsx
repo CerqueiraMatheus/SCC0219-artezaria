@@ -1,4 +1,4 @@
-import {Routes, Route, Navigate, useNavigate} from 'react-router-dom';
+import {Routes, Route, Navigate} from 'react-router-dom';
 
 import Header from '../components/Navigation/Header';
 import Footer from '../components/Navigation/Footer';
@@ -10,10 +10,10 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import ProductDetail from "../pages/ProductDetail";
 import ArtistDetail from "../pages/ArtistDetail";
-import {CartContext, CartProvider} from "../context/CartContext";
+import {CartContext} from "../context/CartContext";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
-import {UserContext, UserProvider} from "../context/UserContext";
+import {UserContext} from "../context/UserContext";
 import AccountPage from "../pages/Account";
 import {useContext} from "react";
 import EditProfilePage from '../pages/EditProfile';
@@ -25,6 +25,7 @@ import Management from '../pages/Management';
 import CreateAdvert from '../pages/CreateAdvert';
 import {UserTypes} from "../../domain/User";
 import Purchases from '../pages/Purchases';
+import AdvertPurchase from "../pages/AdvertPurchase";
 
 const DashboardRoutes = () => {
     const {user, isUserLoggedIn} = useContext(UserContext);
@@ -65,6 +66,7 @@ const DashboardRoutes = () => {
                                 {user.type === UserTypes.ARTIST && (
                                     <>
                                         <Route path='/adverts' element={<Adverts/>}/>
+                                        <Route path='/adverts/purchases/:productId' element={<AdvertPurchase/>}/>
                                         <Route path='/create' element={<CreateAdvert/>}/>
                                     </>
                                 )}

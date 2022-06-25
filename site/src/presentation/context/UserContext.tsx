@@ -1,7 +1,5 @@
 import {useState, createContext, useContext} from 'react';
 import {User} from "../../domain/User";
-import {Product} from "../../domain/Product";
-import {CartContext} from "./CartContext";
 
 // Cart Context
 export type UserContextType = {

@@ -1,8 +1,7 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import {UserContext} from "../context/UserContext";
-import {Avatar, Card, Container, Divider, Grid, Stack, TextField, Typography} from "@mui/material";
+import {Card, Divider, Grid, Stack, TextField, Typography} from "@mui/material";
 import {User, UserTypes} from "../../domain/User";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import {useNavigate} from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";

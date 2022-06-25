@@ -1,13 +1,11 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Typography from '@mui/material/Typography';
 
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import {Product} from '../../../domain/Product';
-import {ManagementContext} from "../../context/ManagementContext";
 import {useNavigate} from "react-router-dom";
-import {UserTypes} from "../../../domain/User";
 
 const ManagementProductItem = (product: Product) => {
     const navigate = useNavigate();

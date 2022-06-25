@@ -1,6 +1,6 @@
-import {Button, Divider, Grid, Stack, Typography} from "@mui/material";
+import {Button, Divider, Grid, Typography} from "@mui/material";
 import {PRODUCTS} from "../../data/ProductsData";
-import ItemAnnouncement from "../components/Item/ItemAnnouncement";
+import ItemAdvert from "../components/Adverts/ItemAdvert";
 import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from "react-router-dom";
 import React from "react";
@@ -21,7 +21,7 @@ function Adverts() {
             <Grid container spacing={2} sx={{marginTop: 5}}>
                 {PRODUCTS?.map((item) => (
                     <Grid item xs={4} key={item.id}>
-                        <ItemAnnouncement {...item} />
+                        <ItemAdvert {...item} />
                     </Grid>
                 ))}
             </Grid>

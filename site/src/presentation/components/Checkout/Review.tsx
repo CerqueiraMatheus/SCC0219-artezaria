@@ -8,13 +8,6 @@ import {useContext} from "react";
 import {CartContext} from "../../context/CartContext";
 import {UserContext} from "../../context/UserContext";
 
-const payments = [
-    {name: 'Card type', detail: 'Visa'},
-    {name: 'Card holder', detail: 'Mr John Smith'},
-    {name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234'},
-    {name: 'Expiry date', detail: '04/2024'},
-];
-
 export default function Review() {
     const {totalCartPrice, cart} = useContext(CartContext);
     const {user} = useContext(UserContext);

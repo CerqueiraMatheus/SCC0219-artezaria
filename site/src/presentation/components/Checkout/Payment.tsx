@@ -2,14 +2,12 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import InputMask from 'react-input-mask';
 import {UserContext} from "../../context/UserContext";
 
 export default function PaymentForm() {
     const {user} = useContext(UserContext);
-    const handleNameChange = (e) => {
-    }
 
     return (
         <React.Fragment>

@@ -41,7 +41,7 @@ const ManagementProductItem = (product: Product) => {
                 borderSpacing: 2
             }}>
                 <Button variant="contained" color="inherit" sx={{margin: 1}}
-                        onClick={() => navigate('product/' + product.id)}>Ver
+                        onClick={() => navigate('/item/' + product.id)}>Ver
                     Mais</Button>
                 <Button variant="contained" color="secondary" sx={{margin: 1}}>Remover</Button>
             </Box>

@@ -17,7 +17,7 @@ export const productB = new Product({
     id: 2,
     title: "Produto 2",
     description: "Descrição 2",
-    quantityInStock: 0,
+    quantityInStock: 2,
     price: 2,
     image: url,
     artist: userArtist2
@@ -43,5 +43,16 @@ export const productD = new Product({
     artist: userArtist
 });
 
+
+export const productE = new Product({
+    id: 5,
+    title: "Produto 5",
+    description: "Descrição 5",
+    quantityInStock: 0,
+    price: 3,
+    image: url,
+    artist: userArtist2
+});
+
 // Fake products data
-export let PRODUCTS = [productA, productB, productC, productD];
+export let PRODUCTS = [productA, productB, productC, productD, productE];

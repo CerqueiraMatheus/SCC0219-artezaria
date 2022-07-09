@@ -1,14 +1,20 @@
 'use strict';
 
 const User = require('../Model/User');
-const {SIGNIN_ERROR, SUCCESS, SERVER_ERROR, SIGNUP_ERROR} = require("../Util/Messages");
+const {SIGNIN_ERROR, SUCCESS, SERVER_ERROR, SIGNUP_ERROR, USER_UPDATE_ERROR} = require("../Util/Messages");
 
 // Entrada
 const signIn = async (req, res) => {
     try {
 
+        // console.log(JSON.parse(req.body));
+        console.log(req.body);
+        console.log(req.body.email);
+
         // Busca por um usuário
         const user = await User.findOne({email: req.body.email, password: req.body.password});
+
+        console.log(user);
 
         // Retorna o usuário e uma mensagem
         return res.status(200).send({
@@ -17,6 +23,8 @@ const signIn = async (req, res) => {
         });
 
     } catch (e) {
+        console.log(e);
+
         // Erro do servidor
         return res.status(400).send(SERVER_ERROR);
     }
@@ -28,10 +36,39 @@ const signUp = async (req, res) => {
         // Cria o novo usuário
         const user = new User(req.body);
         await user.save();
-        res.status(201).send(SUCCESS);
+
+        // Retorna sucesso e uma mensagem
+        return res.status(200).send({
+            "message": SUCCESS,
+            "success": true
+        });
     } catch (e) {
         // Erro do servidor
-        return res.status(400).send(SERVER_ERROR);
+        return res.status(400).send({
+            "message": e.code === 11000 ? SIGNUP_ERROR : SERVER_ERROR,
+            "success": false
+        });
+    }
+}
+
+const updateUser = async (req, res) => {
+    try {
+        // Encontra o usuário
+        await User.findOneAndUpdate({email: req.body.user.email}, req.body.user);
+
+        console.log(req.body.user);
+        console.log(req.body.user.email);
+        // Envia a resposta
+        res.status(200).send({
+            "message": SUCCESS,
+            "success": true
+        });
+    } catch (e) {
+        // Erro
+        res.status(400).send({
+            "message": USER_UPDATE_ERROR,
+            "success": true
+        });
     }
 }
 
@@ -95,4 +132,4 @@ const signUp = async (req, res) => {
 //     }
 // }
 
-module.exports = {signIn, signUp}
+module.exports = {signIn, signUp, update: updateUser}

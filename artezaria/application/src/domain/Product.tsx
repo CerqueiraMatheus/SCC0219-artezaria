@@ -1,7 +1,7 @@
 import {User} from "./User";
 
 export class Product {
-    id: number = 0;
+    _id: string = "";
     title: string = "";
     description: string = "";
     price: number = 0;

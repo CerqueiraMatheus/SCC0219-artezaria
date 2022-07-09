@@ -9,7 +9,7 @@ const MUNCH_BIO =
     "Faleceu em 23 de janeiro de 1944. Encontra-se sepultado no Cemitério de Nosso Salvador, Oslo, na Noruega.";
 
 export const userClient = new User({
-        id: 1,
+        _id: "1",
         name: "Matheus",
         lastName: "Cerqueira",
         email: "cliente@site.com",
@@ -20,7 +20,7 @@ export const userClient = new User({
 );
 
 export const userArtist = new User({
-        id: 2,
+        _id: "2",
         name: "Edvard",
         lastName: "Munch",
         email: "artesao@site.com",
@@ -32,7 +32,7 @@ export const userArtist = new User({
 );
 
 export const userArtist2 = new User({
-        id: 5,
+        _id: "5",
         name: "Gustavo",
         lastName: "Munch",
         email: "artesao@site.com",
@@ -44,7 +44,7 @@ export const userArtist2 = new User({
 );
 
 export const userAdmin = new User({
-        id: 3,
+        _id: "3",
         name: "Super",
         lastName: "User",
         email: "admin@site.com",

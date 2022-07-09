@@ -4,6 +4,7 @@ import AppRouter from './presentation/routers/AppRouter';
 import {CartProvider} from './presentation/context/CartContext';
 import {UserProvider} from "./presentation/context/UserContext";
 import {ManagementProvider} from "./presentation/context/ManagementContext";
+import {SnackbarProvider} from "notistack";
 
 function App() {
     return (
@@ -11,7 +12,9 @@ function App() {
             <UserProvider>
                 <CartProvider>
                     <ManagementProvider>
-                        <AppRouter/>
+                        <SnackbarProvider anchorOrigin={{horizontal: "center", vertical: "bottom"}}>
+                            <AppRouter/>
+                        </SnackbarProvider>
                     </ManagementProvider>
                 </CartProvider>
             </UserProvider>

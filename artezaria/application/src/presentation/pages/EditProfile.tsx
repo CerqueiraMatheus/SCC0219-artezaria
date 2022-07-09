@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {UserContext} from "../context/UserContext";
 import {Card, Divider, Grid, Stack, TextField, Typography} from "@mui/material";
 import {User, UserTypes} from "../../domain/User";
@@ -6,15 +6,30 @@ import Button from "@mui/material/Button";
 import {useNavigate} from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import {update} from "../../api/User";
+import {useSnackbar} from "notistack";
 
 function EditProfilePage() {
     const {user, updateUser} = useContext(UserContext);
     const localUser = new User(user);
+    const {enqueueSnackbar} = useSnackbar();
 
     const spacing = 2;
     const navigate = useNavigate();
-    const handleSubmit = () => {
-        console.log(JSON.stringify(localUser))
+
+    const handleSubmit = async () => {
+
+        const res = await update(localUser);
+        if (!res.success) {
+            return enqueueSnackbar(res.message, {
+                variant: 'error'
+            });
+        }
+
+        enqueueSnackbar(res.message, {
+            variant: 'success'
+        });
+
         updateUser(localUser);
         navigate('/home');
     }
@@ -39,7 +54,7 @@ function EditProfilePage() {
                         localUser.lastName = e.target.value
                     }} required/>
                     <TextField fullWidth id="outlined-basic" label="Email" variant="outlined"
-                               defaultValue={localUser.email} onChange={e => {
+                               defaultValue={localUser.email} disabled={true} onChange={e => {
                         localUser.email = e.target.value
                     }} required/>
                 </Stack>

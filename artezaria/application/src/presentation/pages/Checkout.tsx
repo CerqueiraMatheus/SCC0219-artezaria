@@ -42,7 +42,8 @@ export default function Checkout() {
     );
 
     // Next handler
-    const handleNext = () => {
+    const handleNext = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         setActiveStep(activeStep + 1);
     };
 
@@ -88,26 +89,28 @@ export default function Checkout() {
 
                         // Ongoing step
                         <React.Fragment>
-                            {getStepContent(activeStep)}
+                            <Box component="form" onSubmit={handleNext}>
+                                {getStepContent(activeStep)}
 
-                            {/* Step actions */}
-                            <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
-                                {/* Back */}
-                                {activeStep !== 0 && (
-                                    <Button onClick={handleBack} sx={{mt: 3, ml: 1}} color="inherit">
-                                        Voltar
+                                {/* Step actions */}
+                                <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
+                                    {/* Back */}
+                                    {activeStep !== 0 && (
+                                        <Button onClick={handleBack} sx={{mt: 3, ml: 1}} color="inherit">
+                                            Voltar
+                                        </Button>
+                                    )}
+
+                                    {/* Confirmation */}
+                                    <Button
+                                        variant="contained"
+                                        type="submit"
+                                        sx={{mt: 3, ml: 1}}
+                                        color="secondary"
+                                    >
+                                        {activeStep === steps.length - 1 ? 'Finalizar' : 'Próximo'}
                                     </Button>
-                                )}
-
-                                {/* Confirmation */}
-                                <Button
-                                    variant="contained"
-                                    onClick={handleNext}
-                                    sx={{mt: 3, ml: 1}}
-                                    color="secondary"
-                                >
-                                    {activeStep === steps.length - 1 ? 'Finalizar' : 'Próximo'}
-                                </Button>
+                                </Box>
                             </Box>
                         </React.Fragment>
                     )}

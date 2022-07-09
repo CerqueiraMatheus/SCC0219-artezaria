@@ -12,32 +12,41 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useNavigate} from "react-router-dom";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {UserContext} from "../context/UserContext";
-import {USERS} from "../../data/UserData";
-import ErrorSnackbar from "../components/UI/Error";
+import {signIn} from "../../api/User";
+import {useSnackbar} from "notistack";
 
 export default function SignIn() {
     const navigate = useNavigate();
     const openSignUp = () => navigate(`/signup`);
     const {setUser} = useContext(UserContext);
-    const [showErrorBar, setShowErrorBar] = useState(false);
+    const {enqueueSnackbar} = useSnackbar();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-        const user = USERS.find(x => x.email === data.get('email')! && x.password === data.get('password')!)!;
-        if (user) {
-            setUser(user);
-            console.log(user);
+
+        const res = await signIn(data.get('email')!.toString(), data.get('password')!.toString());
+
+        if (res.user) {
+            setUser(res.user);
+            console.log(res.user);
             navigate('/home');
         } else {
-            setShowErrorBar(true);
+            enqueueSnackbar(res.message, {
+                variant: 'error'
+            });
         }
+
+        // const user = USERS.find(x => x.email === data.get('email')! && x.password === data.get('password')!)!;
+        // if (user) {
+        //     setUser(user);
+        //     console.log(user);
+        //     navigate('/home');
+        // } else {
+        //     setShowErrorBar(true);
+        // }
     };
 
     return (
@@ -67,7 +76,6 @@ export default function SignIn() {
                         name="email"
                         autoComplete="email"
                         type="email"
-                        onChange={() => setShowErrorBar(false)}
                         autoFocus
                     />
                     <TextField
@@ -76,7 +84,6 @@ export default function SignIn() {
                         fullWidth
                         name="password"
                         label="Senha"
-                        onChange={() => setShowErrorBar(false)}
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -108,8 +115,6 @@ export default function SignIn() {
                     </Grid>
                 </Box>
             </Box>
-            {/* Success */}
-            {showErrorBar && (<ErrorSnackbar message={"Usuário não encontrado!"}/>)}
         </Container>
     );
 }

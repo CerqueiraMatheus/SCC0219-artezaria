@@ -33,7 +33,7 @@ const Cart = () => {
                     {/* Items */}
                     <Container className='animate__animated animate__fadeIn'>
                         {cart.map((item) => (
-                            <Fragment key={item.id}>
+                            <Fragment key={item._id}>
                                 <CartItem {...item}  />
                                 <Divider variant='middle' sx={{my: 3}}/>
                             </Fragment>

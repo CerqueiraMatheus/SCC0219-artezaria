@@ -10,31 +10,51 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useNavigate} from "react-router-dom";
-import {User, UserTypes} from "../../domain/User";
 import {useContext} from "react";
 import {UserContext} from "../context/UserContext";
+import {signIn, signUp} from "../../api/User";
+import {useSnackbar} from "notistack";
 
 export default function SignUp() {
     const navigate = useNavigate();
     const openSignIn = () => navigate(`/signin`);
     const {setUser} = useContext(UserContext);
+    const {enqueueSnackbar} = useSnackbar();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
 
-        let user = new User({
-            email: data.get('email')!.toString(),
-            password: data.get('password')!.toString(),
-            name: data.get('firstName')!.toString(),
-            lastName: data.get('lastName')!.toString(),
-            address: data.get('address')!.toString(),
-            type: UserTypes.CLIENT,
-            id: 40
+        const res1 = await signUp(
+            data.get('firstName')!.toString(),
+            data.get('lastName')!.toString(),
+            data.get('address')!.toString(),
+            data.get('email')!.toString(),
+            data.get('password')!.toString()
+        );
+
+        if (!res1.success) {
+            return enqueueSnackbar(res1.message, {
+                variant: 'error'
+            });
+        }
+
+        const res2 = await signIn(
+            data.get('email')!.toString(),
+            data.get('password')!.toString()
+        );
+
+        if (!res2.user) {
+            return enqueueSnackbar(res1.message, {
+                variant: 'error'
+            });
+        }
+
+        enqueueSnackbar(res1.message, {
+            variant: 'success'
         });
 
-        setUser(user);
-        console.log(user);
+        setUser(res2.user);
         navigate('/home');
     };
 

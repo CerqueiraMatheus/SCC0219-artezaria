@@ -47,7 +47,7 @@ const ManagementUserItem = (user: User) => {
             }}>
                 {curUser.type === UserTypes.ARTIST &&
                     <Button sx={{margin: 1}} variant="contained" color="inherit" onClick={() => {
-                        navigate('/artist/' + curUser.id)
+                        navigate('/artist/' + curUser._id)
                     }}>Ver perfil</Button>}
                 {curUser.type !== UserTypes.ADMIN && (
                     <>

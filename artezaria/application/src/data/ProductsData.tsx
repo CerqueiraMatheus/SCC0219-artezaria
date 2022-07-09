@@ -4,7 +4,7 @@ import {userArtist, userArtist2} from "./UserData";
 const url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Edvard_Munch_-_The_Scream_-_Google_Art_Project.jpg/800px-Edvard_Munch_-_The_Scream_-_Google_Art_Project.jpg';
 
 export const productA = new Product({
-    id: 1,
+    _id: "1",
     title: "Produto 1",
     description: "Descrição 1",
     quantityInStock: 2,
@@ -14,7 +14,7 @@ export const productA = new Product({
 });
 
 export const productB = new Product({
-    id: 2,
+    _id: "2",
     title: "Produto 2",
     description: "Descrição 2",
     quantityInStock: 2,
@@ -24,7 +24,7 @@ export const productB = new Product({
 });
 
 export const productC = new Product({
-    id: 3,
+    _id: "3",
     title: "Produto 3",
     description: "Descrição 3",
     quantityInStock: 4,
@@ -34,7 +34,7 @@ export const productC = new Product({
 });
 
 export const productD = new Product({
-    id: 4,
+    _id: "4",
     title: "Produto 4",
     description: "Descrição 4",
     quantityInStock: 4,
@@ -45,7 +45,7 @@ export const productD = new Product({
 
 
 export const productE = new Product({
-    id: 5,
+    _id: "5",
     title: "Produto 5",
     description: "Descrição 5",
     quantityInStock: 0,

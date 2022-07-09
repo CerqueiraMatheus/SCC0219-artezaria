@@ -12,8 +12,8 @@ const ItemAdvert = (item: Product) => {
 
     // Navigation handlers
     const navigate = useNavigate();
-    const openProduct = () => navigate(`/item/${item.id}`);
-    const openSold = () => navigate(`/adverts/purchases/${item.id}`);
+    const openProduct = () => navigate(`/item/${item._id}`);
+    const openSold = () => navigate(`/adverts/purchases/${item._id}`);
 
     return (
         <Card sx={{width: 345, boxShadow: 3, margin: 1}}>

@@ -30,10 +30,10 @@ export const ManagementProvider = ({children}) => {
     }
 
     const removeUser = (u: User) => {
-        setUsers(users.filter((user) => user.id !== u.id));
+        setUsers(users.filter((user) => user._id !== u._id));
         localStorage.setItem(
             'users',
-            JSON.stringify(users.filter((user) => user.id !== u.id))
+            JSON.stringify(users.filter((user) => user._id !== u._id))
         );
     }
 

@@ -21,8 +21,8 @@ const ItemCard = (item: Product) => {
 
     // Navigation handlers
     const navigate = useNavigate();
-    const openArtist = () => navigate(`/artist/${item.artist.id}`);
-    const openProduct = () => navigate(`/item/${item.id}`);
+    const openArtist = () => navigate(`/artist/${item.artist._id}`);
+    const openProduct = () => navigate(`/item/${item._id}`);
 
     return (
         <Card sx={{maxWidth: 345, boxShadow: 3, margin: 1}}>

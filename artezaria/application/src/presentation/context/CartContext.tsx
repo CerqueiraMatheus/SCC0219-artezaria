@@ -51,7 +51,7 @@ export const CartProvider = ({children}) => {
     }, [cart]);
 
     useEffect(() => {
-        if (user.id === 0) resetCart();
+        if (user._id === "") resetCart();
     }, [user]);
 
     // Value updater
@@ -68,23 +68,23 @@ export const CartProvider = ({children}) => {
 
     // Remove item from cart
     const removeItemFromCart = (item: Product) => {
-        setCart(cart.filter((cartItem) => cartItem.id !== item.id));
+        setCart(cart.filter((cartItem) => cartItem._id !== item._id));
         localStorage.setItem(
             'cart',
-            JSON.stringify(cart.filter((cartItem) => cartItem.id !== item.id))
+            JSON.stringify(cart.filter((cartItem) => cartItem._id !== item._id))
         );
     };
 
     // Check if item is in cart
-    const isInCart = (item) => cart.some((cartItem: Product) => cartItem.id === item.id);
+    const isInCart = (item) => cart.some((cartItem: Product) => cartItem._id === item._id);
 
     // Increase item of cart
     const increaseItemQuantity = (item: Product) => {
         item = new Product(item);
         item = item.pickOne();
         let index = cart.map(function (x) {
-            return x.id;
-        }).indexOf(item.id);
+            return x._id;
+        }).indexOf(item._id);
         cart[index] = item;
         setCart(cart);
         localStorage.setItem('cart', JSON.stringify([...cart]));
@@ -97,8 +97,8 @@ export const CartProvider = ({children}) => {
         item = new Product(item);
         item = item.removeOne();
         let index = cart.map(function (x) {
-            return x.id;
-        }).indexOf(item.id);
+            return x._id;
+        }).indexOf(item._id);
         cart[index] = item;
         setCart(cart);
         localStorage.setItem('cart', JSON.stringify([...cart]));

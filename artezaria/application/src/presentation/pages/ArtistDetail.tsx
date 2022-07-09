@@ -11,8 +11,8 @@ import {UserTypes} from "../../domain/User";
 const ArtistDetail = () => {
     // Get artist infos
     const {artistId} = useParams();
-    let artistTest = USERS.find(x => x.id === parseInt(artistId!) && x.type === UserTypes.ARTIST)!;
-    let artistProducts = PRODUCTS.filter(x => x.artist.id === artistTest.id)!;
+    let artistTest = USERS.find(x => x._id === artistId && x.type === UserTypes.ARTIST)!;
+    let artistProducts = PRODUCTS.filter(x => x.artist._id === artistTest._id)!;
     console.log(artistProducts);
 
     return (artistTest ?

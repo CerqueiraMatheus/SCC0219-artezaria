@@ -10,7 +10,7 @@ import {useParams} from "react-router-dom";
 
 const AdvertPurchase = () => {
     const {productId} = useParams();
-    const purchases = PRODUCTS_PURCHASE.filter(x => x.product.id === parseInt(productId!));
+    const purchases = PRODUCTS_PURCHASE.filter(x => x.product._id === productId);
 
     return (
         <>

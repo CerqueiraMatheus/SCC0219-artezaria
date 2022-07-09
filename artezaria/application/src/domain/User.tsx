@@ -7,7 +7,7 @@ export enum UserTypes {
 }
 
 export class User {
-    public id: number = 0;
+    public _id: string = "";
     public name: string = "";
     public lastName: string = "";
     public email: string = "";

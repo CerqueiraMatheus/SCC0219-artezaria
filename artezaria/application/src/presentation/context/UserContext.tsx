@@ -37,7 +37,7 @@ export const UserProvider = ({children}) => {
     // Check logged in
     const isUserLoggedIn = () => {
         console.log(JSON.stringify(user));
-        return (user?.id !== 0);
+        return (user?._id !== "");
     }
 
     return (

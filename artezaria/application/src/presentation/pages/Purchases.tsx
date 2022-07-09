@@ -9,7 +9,7 @@ const Purchases = () => {
             <Divider sx={{marginBottom: 5}}/>
             <Grid container>
                 {PRODUCTS?.map((item) => (
-                    <Grid item xs={4} key={item.id}>
+                    <Grid item xs={4} key={item._id}>
                         <PurchaseItem {...item} />
                     </Grid>
                 ))}

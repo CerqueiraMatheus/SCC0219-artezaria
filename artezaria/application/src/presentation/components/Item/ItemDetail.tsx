@@ -57,7 +57,7 @@ const ItemDetail = (item: Product) => {
             </Typography>
 
             {/* Product actions */}
-            {((user.id !== item.artist.id) && (user.type !== UserTypes.ADMIN)) &&
+            {((user._id !== item.artist._id) && (user.type !== UserTypes.ADMIN)) &&
                 <Box display='flex' justifyContent={'center'}>
                     {isInCart(item) ? (
 

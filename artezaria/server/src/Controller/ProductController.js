@@ -2,9 +2,16 @@
 
 const User = require('../Model/User');
 const Product = require('../Model/Product');
-const {SUCCESS, PRODUCT_INSERT_ERROR, PRODUCT_LIST_ERROR} = require("../Util/Messages");
+const {
+    SUCCESS, PRODUCT_INSERT_ERROR, PRODUCT_LIST_ERROR,
+    USER_DELETE_PRODUCT_ERROR,
+    USER_DELETE_PURCHASE_ERROR,
+    SERVER_ERROR, PRODUCT_DELETE_ERROR
+} = require("../Util/Messages");
 const Console = require("console");
 const {ObjectId} = require('mongodb');
+const Purchase = require("../Model/Purchase");
+const PurchaseItem = require("../Model/PurchaseItem");
 
 // Inserção
 const createProduct = async (req, res) => {
@@ -101,4 +108,166 @@ const findProduct = async (req, res) => {
     }
 };
 
-module.exports = {createProduct, findProduct, findPublishedProducts};
+// Pesquisa
+const findProductByName = async (req, res) => {
+    try {
+        // Busca o produto
+        const products = await Product.aggregate([
+            {$match: {"title": {$regex: '^' + req.body.product.title, $options: 'i'}}},
+            {
+                $lookup: {
+                    from: "user",
+                    localField: "artist",
+                    foreignField: "_id",
+                    as: "artist"
+                }
+            },
+            {$unwind: "$artist"}
+        ]);
+
+        // Retorna sucesso e uma mensagem
+        return res.status(200).send({
+            "message": SUCCESS,
+            "products": products
+        });
+    } catch (e) {
+        // Retorna sucesso e uma mensagem
+        return res.status(400).send({
+            "message": PRODUCT_LIST_ERROR,
+            "products": null
+        });
+    }
+};
+
+const deleteProduct = async (req, res) => {
+    try {
+        let product = new Product(req.body.product);
+        console.log(product);
+
+        // Busca os itens das compras
+        const purchases = await PurchaseItem.find({"product": product._id});
+
+        // Verifica se produto está em compras
+        if (purchases.length > 0) return res.status(200).send({
+            "message": PRODUCT_DELETE_ERROR,
+            "success": false
+        });
+
+        await product.delete();
+
+        return res.status(200).send({
+            "message": SUCCESS,
+            "success": true
+        });
+    } catch (e) {
+        console.log(e);
+        // Erro do servidor
+        return res.status(400).send({
+            "message": SERVER_ERROR,
+            "success": false
+        });
+    }
+}
+
+const getMostSold = async (req, res) => {
+    try {
+        // let products = await Product.find().sort({quantitySold: -1}).limit(10);
+        const products = await Product.aggregate([
+            {$limit: 10},
+            {$sort: {quantitySold: -1}},
+            {
+                $lookup: {
+                    from: "user",
+                    localField: "artist",
+                    foreignField: "_id",
+                    as: "artist"
+                }
+            },
+            {$unwind: "$artist"}
+        ]);
+
+        return res.status(200).send({
+            "message": SUCCESS,
+            "products": products
+        });
+    } catch (e) {
+        console.log(e);
+        // Erro do servidor
+        return res.status(400).send({
+            "message": SERVER_ERROR,
+            "success": false
+        });
+    }
+}
+
+const getMostRecent = async (req, res) => {
+    try {
+        const products = await Product.aggregate([
+            {$limit: 10},
+            {$sort: {data: -1}},
+            {
+                $lookup: {
+                    from: "user",
+                    localField: "artist",
+                    foreignField: "_id",
+                    as: "artist"
+                }
+            },
+            {$unwind: "$artist"}
+        ]);
+
+        return res.status(200).send({
+            "message": SUCCESS,
+            "products": products
+        });
+    } catch (e) {
+        console.log(e);
+        // Erro do servidor
+        return res.status(400).send({
+            "message": SERVER_ERROR,
+            "success": false
+        });
+    }
+}
+
+const getByArtist = async (req, res) => {
+    try {
+        const products = await Product.aggregate([
+            {$match: {artist: new ObjectId(req.params.id)}},
+            {$limit: 10},
+            {$sort: {quantitySold: -1}},
+            {
+                $lookup: {
+                    from: "user",
+                    localField: "artist",
+                    foreignField: "_id",
+                    as: "artist"
+                }
+            },
+            {$unwind: "$artist"}
+        ]);
+
+        return res.status(200).send({
+            "message": SUCCESS,
+            "products": products
+        });
+    } catch (e) {
+        console.log(e);
+        // Erro do servidor
+        return res.status(400).send({
+            "message": SERVER_ERROR,
+            "products": false
+        });
+    }
+}
+
+module.exports = {
+    createProduct,
+    findProduct,
+    findPublishedProducts,
+    findProductByName,
+    deleteProduct,
+    getMostSold,
+    getMostRecent,
+    getByArtist
+};

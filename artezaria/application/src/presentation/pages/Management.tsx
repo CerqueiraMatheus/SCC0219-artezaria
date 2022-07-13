@@ -13,9 +13,9 @@ const Management = () => {
 
             {/* Content */}
             <Divider sx={{marginBottom: 5}}/>
-            <AccountRowCard title={"Gerenciar Anúncios"} description={"Gerencie os anúncios feitos pelos usuários"}
+            <AccountRowCard title={"Gerenciar anúncios"} description={"Gerencie os anúncios feitos pelos usuários"}
                             link={'/management/product'}/>
-            <AccountRowCard title={'Gerenciar Usuários'} description={"Gerencie os usuários cadastrados no site"}
+            <AccountRowCard title={'Gerenciar usuários'} description={"Gerencie os usuários cadastrados no site"}
                             link={'/management/user'}/>
             <AccountRowCard title={"Sair"} description={"Já vai? :("} link={"/home"}
                             click={() => resetUser()}/>

@@ -38,15 +38,6 @@ export default function SignIn() {
                 variant: 'error'
             });
         }
-
-        // const user = USERS.find(x => x.email === data.get('email')! && x.password === data.get('password')!)!;
-        // if (user) {
-        //     setUser(user);
-        //     console.log(user);
-        //     navigate('/home');
-        // } else {
-        //     setShowErrorBar(true);
-        // }
     };
 
     return (

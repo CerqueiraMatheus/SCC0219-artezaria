@@ -14,7 +14,6 @@ const ItemDetailContainer = () => {
     const {enqueueSnackbar} = useSnackbar();
 
     useEffect(() => {
-        console.log("entrou");
         const fetchData = async () => {
             const res = await findProduct(itemId!.toString());
             if (res.product) setProduct(res.product);

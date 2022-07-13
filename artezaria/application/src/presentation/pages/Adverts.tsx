@@ -25,7 +25,7 @@ function Adverts() {
         }
 
         fetchData();
-    });
+    }, []);
 
     return (
         <>

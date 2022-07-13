@@ -9,15 +9,27 @@ import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 import {USERS} from '../../data/UserData';
 import {ManagementContext} from "../context/ManagementContext";
-
+import {findProductByName} from "../../api/Product";
+import {findUserByEmail} from "../../api/User";
+import {User} from "../../domain/User";
 
 const ManagementUser = () => {
     const {users, setUsers} = useContext(ManagementContext);
-    setUsers(USERS);
-    let [localUsers] = useState(users);
 
     useEffect(() => {
-        localUsers = users;
+        setUsers([]);
+    }, []);
+
+    const [localUsers, setLocalUsers] = useState<User[]>(users);
+
+    const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value.length < 1) return;
+        let res = await findUserByEmail(event.target.value);
+        setUsers(res.users!);
+    }
+
+    useEffect(() => {
+        setLocalUsers(users);
     }, [users]);
 
     return (
@@ -28,21 +40,20 @@ const ManagementUser = () => {
             {/* Content */}
             <Divider sx={{marginBottom: 5}}/>
             <TextField sx={{margin: 5, width: "50%"}}
-                       label="Pesquise pelo ID do usuário"
+                       label="Pesquise pelo e-mail do usuário"
                        variant="outlined"
                        InputProps={{
                            endAdornment: (
                                <SearchIcon/>
                            ),
                        }}
+                       onChange={handleChange}
             />
             <Box component='div'>
                 <Grid container spacing={3} sx={{mt: 0, display: 'flex', justifyContent: 'center'}}>
-                    {localUsers.length > 0 ? (localUsers.map((user) => (
+                    {localUsers.length > 0 && (localUsers.map((user) => (
                         <ManagementUserItem {...user} />
-                    ))) : (
-                        <Typography variant='h4'> Não há resultados!</Typography>
-                    )}
+                    )))}
                 </Grid>
             </Box>
         </>

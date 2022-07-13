@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -9,10 +9,20 @@ import ManagementProductItem from '../components/Management/ManagementProductIte
 import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 import {ManagementContext} from "../context/ManagementContext";
+import {findProductByName} from "../../api/Product";
 
 const ManagementProduct = () => {
     const {products, setProducts} = useContext(ManagementContext);
-    setProducts(PRODUCTS);
+
+    useEffect(() => {
+        setProducts([]);
+    }, []);
+
+    const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value.length < 1) return;
+        let res = await findProductByName(event.target.value);
+        setProducts(res.products!);
+    }
 
     return (
         <>
@@ -29,14 +39,13 @@ const ManagementProduct = () => {
                                <SearchIcon/>
                            ),
                        }}
+                       onChange={handleChange}
             />
             <Box component='div'>
                 <Grid container spacing={3} sx={{mt: 0, display: 'flex', justifyContent: 'center'}}>
-                    {PRODUCTS.length > 0 ? (products.map((product) => (
+                    {PRODUCTS.length > 0 && (products.map((product) => (
                         <ManagementProductItem {...product} />
-                    ))) : (
-                        <Typography variant='h4'> Não há resultados!</Typography>
-                    )}
+                    )))}
                 </Grid>
             </Box>
         </>

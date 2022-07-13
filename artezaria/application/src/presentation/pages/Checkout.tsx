@@ -12,6 +12,9 @@ import Review from "../components/Checkout/Review";
 import {useContext, useEffect} from "react";
 import {CartContext} from "../context/CartContext";
 import {wait} from "@testing-library/user-event/dist/utils";
+import {buyCart} from "../../api/Purchase";
+import {UserContext} from "../context/UserContext";
+import {useSnackbar} from "notistack";
 
 // Checkout steps
 const steps = ['Método de pagamento', 'Revisão dos itens'];
@@ -31,8 +34,9 @@ function getStepContent(step: number) {
 export default function Checkout() {
     // Step
     const [activeStep, setActiveStep] = React.useState(0);
-    const {resetCart} = useContext(CartContext);
-
+    const {cart, resetCart} = useContext(CartContext);
+    const {user} = useContext(UserContext);
+    const {enqueueSnackbar} = useSnackbar();
 
     useEffect(() => {
             if (activeStep === steps.length) {
@@ -42,8 +46,16 @@ export default function Checkout() {
     );
 
     // Next handler
-    const handleNext = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleNext = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        if (activeStep === steps.length - 1) {
+            let res = await buyCart(cart, user);
+            if (!res.success) return enqueueSnackbar(res.message, {
+                variant: 'error'
+            });
+        }
+
         setActiveStep(activeStep + 1);
     };
 

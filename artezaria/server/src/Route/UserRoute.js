@@ -6,10 +6,10 @@ const controller = require('../Controller/UserController');
 
 router.post("/signin", controller.signIn);
 router.put('/signup', controller.signUp);
-router.put('/update', controller.update);
-
-// router.post('/:id', controller.getuserbyemail);
-// router.put('/:id', controller.put);
-// router.delete('/:id', controller.delete);
+router.put('/update', controller.updateUser);
+router.post('/findbyemail', controller.findUserByEmail);
+router.post('/updatetoadmin', controller.updateToAdmin);
+router.delete('/delete', controller.deleteUser);
+router.get("/findbyid/:id", controller.findByID);
 
 module.exports = router;

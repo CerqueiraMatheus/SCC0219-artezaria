@@ -47,7 +47,6 @@ export const findProduct = async (id: string) => {
             "product": new Product({_id: id})
         });
 
-        console.log(response);
         return {
             "message": response.data.message,
             "product": new Product(response.data.product)
@@ -57,6 +56,81 @@ export const findProduct = async (id: string) => {
         return {
             "message": "Erro do servidor!",
             "product": null
+        };
+    }
+}
+
+export const findProductByName = async (name: string) => {
+    try {
+        let response = await axios.post(SERVER_URL + "product/findbyname", {
+            "product": new Product({title: name})
+        });
+
+        return {
+            "message": response.data.message,
+            "products": <Product[]> response.data.products
+        }
+    } catch (e) {
+        console.log(e);
+        return {
+            "message": "Erro do servidor!",
+            "products": null
+        };
+    }
+}
+
+export const deleteProduct = async (product: Product) => {
+    try {
+        let response = await axios.delete(SERVER_URL + "product/delete", {
+            data: {
+                "product": product
+            }
+        });
+
+        return {
+            "message": response.data.message,
+            "success": response.data.success
+        }
+    } catch (e) {
+        console.log(e);
+        return {
+            "message": "Erro do servidor!",
+            "success": false
+        };
+    }
+}
+
+
+export const getProducts = async (mostSold: boolean) => {
+    try {
+        let response = await axios.get(SERVER_URL + "product/" + (mostSold ? "mostsold" : "mostrecent"));
+
+        return {
+            "message": response.data.message,
+            "products": response.data.products
+        }
+    } catch (e) {
+        console.log(e);
+        return {
+            "message": "Erro do servidor!",
+            "products": false
+        };
+    }
+}
+
+export const getProductsByArtist = async (id: string) => {
+    try {
+        let response = await axios.get(SERVER_URL + "product/byartist/" + id);
+
+        return {
+            "message": response.data.message,
+            "products": response.data.products
+        }
+    } catch (e) {
+        console.log(e);
+        return {
+            "message": "Erro do servidor!",
+            "products": []
         };
     }
 }

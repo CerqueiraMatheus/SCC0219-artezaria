@@ -1,29 +1,30 @@
 import {useState, createContext, useEffect, useContext} from 'react';
 import {Product} from "../../domain/Product";
 import {UserContext} from "./UserContext";
+import {PurchaseItem} from "../../domain/PurchaseItem";
 
 // Cart Context
 export type CartContextType = {
-    cart: Product[];
-    setCart: (cart: Product[]) => void;
-    addItemToCart: (item: Product) => void;
+    cart: PurchaseItem[];
+    setCart: (cart: PurchaseItem[]) => void;
+    addItemToCart: (item: Product) => PurchaseItem;
     removeItemFromCart: (item: Product) => void;
     isInCart: (item: Product) => boolean;
     amountOfItemsOnCart: number;
     totalCartPrice: number;
     resetCart: () => void;
-    increaseItemQuantity: (item: Product) => Product;
-    decreaseItemQuantity: (item: Product) => Product;
+    increaseItemQuantity: (item: Product) => PurchaseItem;
+    decreaseItemQuantity: (item: Product) => PurchaseItem;
 }
 
 // Amount of items on cart
-function countSelectedItems(cart: Product[]) {
-    return cart.reduce((acc, cartItem: Product) => (acc += cartItem.quantitySelected), 0);
+function countSelectedItems(cart: PurchaseItem[]) {
+    return cart.reduce((acc, cartItem: PurchaseItem) => (acc += cartItem.quantitySelected), 0);
 }
 
 // Total cart price
-function countSelectedPrice(cart: Product[]) {
-    return cart.reduce((acc, cartItem: Product) => (acc += cartItem.price * cartItem.quantitySelected), 0);
+function countSelectedPrice(cart: PurchaseItem[]) {
+    return cart.reduce((acc, cartItem: PurchaseItem) => (acc += cartItem.product.price * cartItem.quantitySelected), 0);
 }
 
 // @ts-ignore
@@ -36,7 +37,7 @@ export const CartProvider = ({children}) => {
 
     // Cart
     let [cart, setCart] = useState(
-        (localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!) : []) as Product []
+        (localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!) : []) as PurchaseItem []
     );
 
     // Amount counter
@@ -55,55 +56,64 @@ export const CartProvider = ({children}) => {
     }, [user]);
 
     // Value updater
-    function updateValues(cart: Product[]) {
+    function updateValues(cart: PurchaseItem[]) {
         setPrice(countSelectedPrice(cart));
         setAmount(countSelectedItems(cart));
     }
 
     // Add item to cart
     const addItemToCart = (item: Product) => {
-        setCart([...cart, item]);
+        let purchaseItem = new PurchaseItem({product: item, user: user});
+        purchaseItem.pickOne();
+
+        setCart([...cart, purchaseItem]);
         localStorage.setItem('cart', JSON.stringify([...cart, item]));
+
+        return purchaseItem;
     };
 
     // Remove item from cart
     const removeItemFromCart = (item: Product) => {
-        setCart(cart.filter((cartItem) => cartItem._id !== item._id));
+        setCart(cart.filter((cartItem) => cartItem.product._id !== item._id));
         localStorage.setItem(
             'cart',
-            JSON.stringify(cart.filter((cartItem) => cartItem._id !== item._id))
+            JSON.stringify(cart.filter((cartItem) => cartItem.product._id !== item._id))
         );
     };
 
     // Check if item is in cart
-    const isInCart = (item) => cart.some((cartItem: Product) => cartItem._id === item._id);
+    const isInCart = (item) => cart.some((cartItem: PurchaseItem) => cartItem.product._id === item._id);
 
     // Increase item of cart
     const increaseItemQuantity = (item: Product) => {
-        item = new Product(item);
-        item = item.pickOne();
+        // item = new Product(item);
+        // item = item.pickOne();
         let index = cart.map(function (x) {
-            return x._id;
+            return x.product._id;
         }).indexOf(item._id);
-        cart[index] = item;
+        let purchaseItem = cart[index];
+        purchaseItem.pickOne();
+        cart[index] = purchaseItem;
         setCart(cart);
         localStorage.setItem('cart', JSON.stringify([...cart]));
         updateValues(cart);
-        return item;
+        return cart[index];
     }
 
     // Decrease item of cart
     const decreaseItemQuantity = (item: Product) => {
-        item = new Product(item);
-        item = item.removeOne();
+        // item = new Product(item);
+        // item = item.removeOne();
         let index = cart.map(function (x) {
-            return x._id;
+            return x.product._id;
         }).indexOf(item._id);
-        cart[index] = item;
+        let purchaseItem = cart[index];
+        purchaseItem.removeOne();
+        cart[index] = purchaseItem;
         setCart(cart);
         localStorage.setItem('cart', JSON.stringify([...cart]));
         updateValues(cart);
-        return item;
+        return cart[index];
     }
 
     // Reset cart

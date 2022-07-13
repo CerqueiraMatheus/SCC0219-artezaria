@@ -1,16 +1,20 @@
 import {useState, createContext} from 'react';
 import {User} from "../../domain/User";
 import {Product} from "../../domain/Product";
+import {deleteUser, updateToAdmin} from "../../api/User";
+import {deleteProduct} from "../../api/Product";
 
 // Cart Context
 export type ManagementContextType = {
     users: User[];
+    updateUser: (user: User) => Promise<User>;
     setUsers: (users: User[]) => void;
 
     products: Product[];
+    removeProduct: (product: Product) => Promise<{message: string, success: boolean}>;
     setProducts: (products: Product[]) => void;
 
-    removeUser: (user: User) => void;
+    removeUser: (user: User) => Promise<{message: string, success: boolean}>;
     resetUsers: () => void;
     resetProducts: () => void;
 }
@@ -24,17 +28,56 @@ export const ManagementProvider = ({children}) => {
     const [users, setUserData] = useState<User[]>((localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')!) : []) as User[]);
 
     const setUsers = (u: User[]) => {
-        console.log(JSON.stringify(users));
         setUserData(u);
+        console.log(u);
         localStorage.setItem('users', JSON.stringify([...u]));
     }
 
-    const removeUser = (u: User) => {
-        setUsers(users.filter((user) => user._id !== u._id));
-        localStorage.setItem(
-            'users',
-            JSON.stringify(users.filter((user) => user._id !== u._id))
-        );
+    const updateUser = async (u: User) => {
+        let index = users.map(function (x) {
+            return x._id;
+        }).indexOf(u._id);
+        let res = await updateToAdmin(u);
+        users[index] = res.user;
+        setUsers(users);
+        localStorage.setItem('users', JSON.stringify([...users]));
+        return users[index];
+    }
+
+    const removeUser = async (u: User) => {
+        let response = await deleteUser(u);
+
+        if (response.success) {
+            setUsers(users.filter((user) => user._id !== u._id));
+
+            localStorage.setItem(
+                'users',
+                JSON.stringify(users.filter((user) => user._id !== u._id))
+            );
+        }
+
+        return {
+            "message": response.message,
+            "success": response.success
+        }
+    }
+
+    const removeProduct = async (p: Product) => {
+        let response = await deleteProduct(p);
+
+        if (response.success) {
+            setProducts(products.filter((product) => product._id !== p._id));
+
+            localStorage.setItem(
+                'products',
+                JSON.stringify(products.filter((product) => product._id !== p._id))
+            );
+        }
+
+        return {
+            "message": response.message,
+            "success": response.success
+        }
     }
 
     // Reset user
@@ -61,11 +104,13 @@ export const ManagementProvider = ({children}) => {
     return (
         <ManagementContext.Provider
             value={{
-                users,
+                users: users,
+                updateUser,
                 setUsers,
                 removeUser,
                 resetUsers,
                 products,
+                removeProduct,
                 setProducts,
                 resetProducts
             }}

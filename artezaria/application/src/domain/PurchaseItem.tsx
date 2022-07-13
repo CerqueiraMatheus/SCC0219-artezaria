@@ -1,19 +1,39 @@
 import {User} from "./User";
 import {Product} from "./Product";
+import {Purchase} from "./Purchase";
 
 export enum PurchaseItemStatus {
-    NOT_SENT,
-    SENT,
-    RECEIVED
+    NAO_ENVIADO,
+    ENVIADO,
+    RECEBIDO
 }
 
 export class PurchaseItem {
-    public id: number = 0;
+    public _id: string = "";
+    public status: number = 0;
     public user: User = new User();
+    public quantitySelected: number = 0;
     public product: Product = new Product();
-    public status: number = -1;
 
     public constructor(init?: Partial<PurchaseItem>) {
         Object.assign(this, init);
+    }
+
+    pickOne = () => {
+        let product = new Product(this.product);
+        product.quantityInStock -= 1;
+        this.product = product;
+        this.quantitySelected += 1;
+        console.log(this);
+        return this;
+    }
+
+    removeOne = () => {
+        let product = new Product(this.product);
+        product.quantityInStock += 1;
+        this.product = product;
+        this.quantitySelected -= 1;
+        console.log(this);
+        return this;
     }
 }

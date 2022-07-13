@@ -7,7 +7,7 @@ export class Product {
     price: number = 0;
     image: string = "";
     quantityInStock: number = 0;
-    quantitySelected: number = 0;
+    // quantitySelected: number = 0;
     quantitySold: number = 0;
     artist: User = new User();
 
@@ -16,18 +16,4 @@ export class Product {
     }
 
     isAvailable = () => this.quantityInStock > 0;
-
-    pickOne = () => {
-        this.quantityInStock -= 1;
-        this.quantitySelected += 1;
-        console.log(this);
-        return this;
-    }
-
-    removeOne = () => {
-        this.quantityInStock += 1;
-        this.quantitySelected -= 1;
-        console.log(this);
-        return this;
-    }
 }

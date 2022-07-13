@@ -30,8 +30,6 @@ import AdvertPurchase from "../pages/AdvertPurchase";
 const DashboardRoutes = () => {
     const {user, isUserLoggedIn} = useContext(UserContext);
     const {amountOfItemsOnCart} = useContext(CartContext);
-    console.log(user.type);
-
     return (
         <>
             <ThemeContext>

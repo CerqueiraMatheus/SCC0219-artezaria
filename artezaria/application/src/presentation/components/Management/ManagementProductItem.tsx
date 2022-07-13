@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Typography from '@mui/material/Typography';
 
 import Card from '@mui/material/Card';
@@ -6,9 +6,26 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import {Product} from '../../../domain/Product';
 import {useNavigate} from "react-router-dom";
+import {ManagementContext} from "../../context/ManagementContext";
+import {useSnackbar} from "notistack";
 
 const ManagementProductItem = (product: Product) => {
     const navigate = useNavigate();
+    const {removeProduct} = useContext(ManagementContext);
+    const {enqueueSnackbar} = useSnackbar();
+
+    const handleRemove = async () => {
+        let response = await removeProduct(product);
+
+        if (response.success)
+            return enqueueSnackbar(product.title + " removido com sucesso!", {
+                variant: 'success'
+            });
+
+        return enqueueSnackbar(response.message, {
+            variant: 'error'
+        });
+    }
 
     return (
         <Card raised sx={{
@@ -43,7 +60,7 @@ const ManagementProductItem = (product: Product) => {
                 <Button variant="contained" color="inherit" sx={{margin: 1}}
                         onClick={() => navigate('/item/' + product._id)}>Ver
                     Mais</Button>
-                <Button variant="contained" color="secondary" sx={{margin: 1}}>Remover</Button>
+                <Button variant="contained" color="secondary" sx={{margin: 1}} onClick={handleRemove}>Remover</Button>
             </Box>
         </Card>
     );

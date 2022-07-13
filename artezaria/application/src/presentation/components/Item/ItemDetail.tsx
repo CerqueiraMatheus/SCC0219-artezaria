@@ -14,18 +14,19 @@ import Success from "../UI/Success";
 import {UserContext} from "../../context/UserContext";
 import {UserTypes} from "../../../domain/User";
 
-const ItemDetail = (item: Product) => {
+const ItemDetail = (i: Product) => {
     // Cart actions
     const {addItemToCart, isInCart} = useContext(CartContext);
     const {user} = useContext(UserContext);
+
+    const [item, setItem] = useState<Product>(i);
 
     // Success bar actions
     const [showSuccessBar, setShowSuccessBar] = useState(false);
 
     // Add item handler
     const handleAddItemToCart = () => {
-        item = item.pickOne();
-        addItemToCart(item);
+        setItem(addItemToCart(item).product);
         setShowSuccessBar(true);
     };
 
@@ -45,7 +46,7 @@ const ItemDetail = (item: Product) => {
             <Divider/>
 
             {/* Product description */}
-            <Typography variant='body1' textAlign='justify'>
+            <Typography variant='body1' display="block" sx={{textAlign: "justify", whiteSpace: 'pre-line'}}>
                 {item.description}
             </Typography>
 

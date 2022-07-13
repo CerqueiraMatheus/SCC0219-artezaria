@@ -4,13 +4,13 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Product} from "../../../domain/Product";
 import Card from "@mui/material/Card";
 import {Add, Remove} from "@mui/icons-material";
 import {useCallback, useContext, useState} from "react";
 import {CartContext} from "../../context/CartContext";
+import {PurchaseItem} from "../../../domain/PurchaseItem";
 
-const CartItem = (item: Product) => {
+const CartItem = (item: PurchaseItem) => {
     // Item states
     const [curItem, setItem] = useState(item);
 
@@ -19,12 +19,12 @@ const CartItem = (item: Product) => {
 
     // Dynamic item update
     const handleQuantityChange = useCallback(async (increase: boolean) => {
-            setItem(increase ? increaseItemQuantity(curItem) : decreaseItemQuantity(curItem));
+            setItem(increase ? increaseItemQuantity(curItem.product) : decreaseItemQuantity(curItem.product));
         }, [curItem, decreaseItemQuantity, increaseItemQuantity]
     );
 
     // Remove from cart
-    const handleRemove = () => removeItemFromCart(item);
+    const handleRemove = () => removeItemFromCart(item.product);
 
     return (
         <>
@@ -40,7 +40,7 @@ const CartItem = (item: Product) => {
                         justifyContent='center'
                         alignContent='center'
                     >
-                        <img src={curItem.image} alt={curItem.title}
+                        <img src={curItem.product.image} alt={curItem.product.title}
                              style={{height: '150px', width: '150px', objectFit: "scale-down"}}/>
                     </Grid>
 
@@ -53,7 +53,7 @@ const CartItem = (item: Product) => {
                         justifyContent='center'
                         alignContent='center'
                     >
-                        <Typography variant='h6'>{curItem.title}</Typography>
+                        <Typography variant='h6'>{curItem.product.title}</Typography>
                     </Grid>
 
                     {/* Unity price */}
@@ -67,7 +67,7 @@ const CartItem = (item: Product) => {
                     >
                         <Box>
                             <Typography variant="body2"> Preço unitário </Typography>
-                            <Typography variant='inherit'>{'R$' + curItem.price}</Typography>
+                            <Typography variant='inherit'>{'R$' + curItem.product.price}</Typography>
                         </Box>
                     </Grid>
 
@@ -107,7 +107,7 @@ const CartItem = (item: Product) => {
                                 width: "33%", display: "flex",
                                 justifyContent: "center"
                             }}>
-                                {curItem.quantityInStock > 0 && <Tooltip title='Adicionar' placement='top'>
+                                {curItem.product.quantityInStock > 0 && <Tooltip title='Adicionar' placement='top'>
                                     <IconButton onClick={() => handleQuantityChange(true)}>
                                         <Add/>
                                     </IconButton>
@@ -129,7 +129,7 @@ const CartItem = (item: Product) => {
                     >
                         <Typography variant="body2"> Subtotal </Typography>
                         <Typography variant='inherit'>
-                            {'$' + (curItem.price * curItem.quantitySelected).toFixed(2)}
+                            {'$' + (curItem.product.price * curItem.quantitySelected).toFixed(2)}
                         </Typography>
                     </Grid>
 

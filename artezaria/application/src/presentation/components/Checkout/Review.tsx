@@ -23,10 +23,10 @@ export default function Review() {
             <List disablePadding>
 
                 {/* Item */}
-                {cart.map((product) => (
-                    <ListItem key={product.title} sx={{py: 1, px: 0}}>
-                        <ListItemText primary={product.title} secondary={`Quantidade: ${product.quantitySelected}`}/>
-                        <Typography variant="body2">{`R$${product.price * product.quantitySelected}`}</Typography>
+                {cart.map((item) => (
+                    <ListItem key={item.product.title} sx={{py: 1, px: 0}}>
+                        <ListItemText primary={item.product.title} secondary={`Quantidade: ${item.quantitySelected}`}/>
+                        <Typography variant="body2">{`R$${item.product.price * item.quantitySelected}`}</Typography>
                     </ListItem>
                 ))}
 

@@ -38,7 +38,7 @@ const PurchaseItem = (item: Purchase) => {
                                     <Typography variant='body1'>R${item.product.price} </Typography>
                                 </Grid>
                                 <Grid item xs={4}>
-                                    <Typography variant='body1'>{item.status} </Typography>
+                                    <Typography variant='body1'>{PurchaseItemStatus[item.status]} </Typography>
                                 </Grid>
                             </>
                         ))}

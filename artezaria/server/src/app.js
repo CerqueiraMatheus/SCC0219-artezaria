@@ -22,6 +22,7 @@ app.use(cors({origin: ['http://localhost:3001', 'http://localhost:8080'], creden
 // app.use('/purchaseItem', purchaseItemRoute);
 app.use('/user', require("./Route/UserRoute"));
 app.use('/product', require("./Route/ProductRoute"));
+app.use('/purchase', require("./Route/PurchaseRoute"));
 
 console.log("batata");
 

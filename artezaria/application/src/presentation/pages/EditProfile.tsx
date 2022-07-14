@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import {UserContext} from "../context/UserContext";
 import {Card, Divider, Grid, Stack, TextField, Typography} from "@mui/material";
 import {User, UserTypes} from "../../domain/User";

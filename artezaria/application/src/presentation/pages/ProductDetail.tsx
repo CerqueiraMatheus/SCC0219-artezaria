@@ -1,9 +1,8 @@
 import {useParams} from 'react-router-dom';
 
 import ItemDetail from "../components/Item/ItemDetail"
-import {PRODUCTS} from "../../data/ProductsData";
 import {useEffect, useState} from "react";
-import {findProduct, findPublishedProducts} from "../../api/Product";
+import {findProduct} from "../../api/Product";
 import {useSnackbar} from "notistack";
 import {Product} from "../../domain/Product";
 import Loading from "../components/UI/Loading";

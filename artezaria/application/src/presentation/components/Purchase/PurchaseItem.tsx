@@ -1,6 +1,4 @@
-import {CardActionArea, Divider, Stack, Typography} from '@mui/material';
-import Box from '@mui/material/Box';
-import {Product} from "../../../domain/Product";
+import {CardActionArea, Divider, Typography} from '@mui/material';
 import Card from "@mui/material/Card";
 import {Purchase} from "../../../domain/Purchase";
 import {PurchaseItemStatus} from "../../../domain/PurchaseItem";

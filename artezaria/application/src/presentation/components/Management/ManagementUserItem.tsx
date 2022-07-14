@@ -8,10 +8,7 @@ import {User, UserTypes} from '../../../domain/User';
 
 import {useNavigate} from 'react-router-dom';
 import {ManagementContext} from "../../context/ManagementContext";
-import {PurchaseItem} from "../../../domain/PurchaseItem";
 import {useSnackbar} from "notistack";
-import {markItemSent} from "../../../api/Purchase";
-import {updateToAdmin} from "../../../api/User";
 
 const ManagementUserItem = (u: User) => {
     const [user, setUser] = useState<User>(u);

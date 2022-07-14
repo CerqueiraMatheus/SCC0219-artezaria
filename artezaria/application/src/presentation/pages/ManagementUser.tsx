@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -7,11 +7,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import ManagementUserItem from '../components/Management/ManagementUserItem';
 import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
-import {USERS} from '../../data/UserData';
 import {ManagementContext} from "../context/ManagementContext";
-import {findProductByName} from "../../api/Product";
 import {findUserByEmail} from "../../api/User";
-import {User} from "../../domain/User";
 
 const ManagementUser = () => {
     const {users, setUsers} = useContext(ManagementContext);
@@ -30,7 +27,6 @@ const ManagementUser = () => {
 
     return (
         <>
-
             <Typography variant="h4">Gerenciamento de Usuários</Typography>
 
             {/* Content */}

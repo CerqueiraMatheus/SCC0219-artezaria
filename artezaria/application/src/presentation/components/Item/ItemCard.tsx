@@ -11,12 +11,6 @@ import {Button} from '@mui/material';
 import Link from "@mui/material/Link";
 import {Product} from "../../../domain/Product";
 
-// Generate random color
-const randomColor = () => {
-    let hex = Math.floor(Math.random() * 0xFFFFFF);
-    return "#" + hex.toString(16);
-}
-
 const ItemCard = (item: Product) => {
 
     // Navigation handlers

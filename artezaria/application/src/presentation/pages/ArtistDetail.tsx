@@ -1,14 +1,12 @@
 import {useParams} from 'react-router-dom';
 
 import Loading from "../components/UI/Loading";
-import {PRODUCTS} from "../../data/ProductsData";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import ItemList from "../components/Item/ItemList";
-import {USERS} from "../../data/UserData";
-import {User, UserTypes} from "../../domain/User";
+import {User} from "../../domain/User";
 import {useEffect, useState} from "react";
-import {findProduct, getProductsByArtist} from "../../api/Product";
+import {getProductsByArtist} from "../../api/Product";
 import {Product} from "../../domain/Product";
 import {getUserByID} from "../../api/User";
 import {useSnackbar} from "notistack";

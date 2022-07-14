@@ -27,9 +27,12 @@ const Purchases = () => {
         <Stack>
             <Typography variant="h4">Minhas compras</Typography>
             <Divider sx={{marginBottom: 5}}/>
-            {purchases?.map((item) => (
-                <PurchaseItem {...item} />
-            ))}
+            {purchases?.length! > 0 ?
+                (purchases?.map((item) => (
+                    <PurchaseItem {...item} />
+                ))) :
+                (<Typography variant="h5">Sem compras :(</Typography>)
+            }
         </Stack>
     );
 }

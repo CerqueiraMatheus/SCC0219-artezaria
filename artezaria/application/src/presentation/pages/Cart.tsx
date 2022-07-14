@@ -67,7 +67,7 @@ const Cart = () => {
                 </>
             ) : (
                 // Without items
-                <Typography variant="h3">
+                <Typography variant="h5">
                     Nenhum item no carrinho. Vamos às compras?
                 </Typography>
             )}

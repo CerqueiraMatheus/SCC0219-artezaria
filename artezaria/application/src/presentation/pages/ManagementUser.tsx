@@ -51,7 +51,7 @@ const ManagementUser = () => {
             />
             <Box component='div'>
                 <Grid container spacing={3} sx={{mt: 0, display: 'flex', justifyContent: 'center'}}>
-                    {localUsers.length > 0 && (localUsers.map((user) => (
+                    {users.length > 0 && (users.map((user) => (
                         <ManagementUserItem {...user} />
                     )))}
                 </Grid>

@@ -43,7 +43,7 @@ const ManagementProduct = () => {
             />
             <Box component='div'>
                 <Grid container spacing={3} sx={{mt: 0, display: 'flex', justifyContent: 'center'}}>
-                    {PRODUCTS.length > 0 && (products.map((product) => (
+                    {products.length > 0 && (products.map((product) => (
                         <ManagementProductItem {...product} />
                     )))}
                 </Grid>

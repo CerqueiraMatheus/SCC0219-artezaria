@@ -20,6 +20,7 @@ const Products = () => {
             setMostRecent((await getProducts(false)).products);
             setVanGogh((await getProductsByArtist("62cf15c0720bdb073681fcb9")).products);
             setVitalino((await getProductsByArtist("62cf5b293bc94c14a25aa3dc")).products);
+            setEdvardMunch((await getProductsByArtist("62cf6670173dda324398db3d")).products);
         }
 
         fetchData();
@@ -43,10 +44,9 @@ const Products = () => {
                 <ItemList items={vitalino} title={"Por Mestre Vitalino"}/>
             )}
 
-            {/*<ItemList items={PRODUCTS} title={"Título 4"}/>*/}
-
-            {/*<ItemList items={PRODUCTS} title={"Título 5"}/>*/}
-
+            {edvardMuch.length > 0 && (
+                <ItemList items={edvardMuch} title={"Por Edvard Munch"}/>
+            )}
         </div>
     );
 };

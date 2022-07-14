@@ -31,7 +31,7 @@ const ItemCard = (item: Product) => {
 
                 /* Picture */
                 avatar={
-                    <Avatar sx={{bgcolor: randomColor()}} aria-label="recipe">
+                    <Avatar sx={{bgcolor: "#5ebab9"}} aria-label="recipe">
                         {item.artist.name.charAt(0)}
                     </Avatar>
                 }

@@ -7,7 +7,6 @@ export class Product {
     price: number = 0;
     image: string = "";
     quantityInStock: number = 0;
-    // quantitySelected: number = 0;
     quantitySold: number = 0;
     artist: User = new User();
 

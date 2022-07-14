@@ -13,6 +13,7 @@ function CreateAdvert() {
     const [product] = useState(new Product());
     const {enqueueSnackbar} = useSnackbar();
 
+    // Submete o formulário
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -39,6 +40,8 @@ function CreateAdvert() {
             <Divider sx={{marginBottom: 5}}/>
             <Card raised sx={{padding: 5}}>
                 <Box component="form" onSubmit={handleSubmit}>
+
+                    {/* Seleção de imagem */}
                     <Box marginBottom={2}>
                         {pictureSelected ? (
                                 <CardMedia
@@ -67,6 +70,7 @@ function CreateAdvert() {
 
                     <Divider sx={{marginTop: 2, marginBottom: 2}}/>
 
+                    {/* Formulário */}
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
                             <TextField fullWidth id="standard-basic" required label="Título" variant="outlined"

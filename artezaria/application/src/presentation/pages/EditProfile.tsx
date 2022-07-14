@@ -17,6 +17,7 @@ function EditProfilePage() {
     const spacing = 2;
     const navigate = useNavigate();
 
+    // Lida com a submissão do formulário
     const handleSubmit = async () => {
 
         const res = await update(localUser);
@@ -40,19 +41,25 @@ function EditProfilePage() {
             <Typography variant="h4">Editar perfil</Typography>
             <Divider sx={{marginBottom: 5}}/>
 
+
             <Card raised sx={{padding: 5}}>
+
+                {/* Dados do usuário */}
                 <Typography variant='h4' textAlign='center' gutterBottom>
                     Dados
                 </Typography>
+
                 <Stack spacing={spacing} alignItems='center'>
                     <TextField fullWidth id="outlined-basic" label="Nome" variant="outlined"
                                defaultValue={localUser.name} onChange={e => {
                         localUser.name = e.target.value
                     }} required/>
+
                     <TextField fullWidth id="outlined-basic" label="Sobrenome" variant="outlined"
                                defaultValue={localUser.lastName} onChange={e => {
                         localUser.lastName = e.target.value
                     }} required/>
+
                     <TextField fullWidth id="outlined-basic" label="Email" variant="outlined"
                                defaultValue={localUser.email} disabled={true} onChange={e => {
                         localUser.email = e.target.value
@@ -62,6 +69,7 @@ function EditProfilePage() {
 
             <div style={{margin: 10}}/>
 
+            {/* Endereço */}
             {user.type !== UserTypes.ADMIN &&
                 <Card raised sx={{padding: 5}}>
                     <Typography variant='h4' textAlign='center' gutterBottom>
@@ -77,6 +85,7 @@ function EditProfilePage() {
 
             <div style={{margin: 10}}/>
 
+            {/* Biografia */}
             {user.type === UserTypes.ARTIST &&
                 <Card raised sx={{padding: 5}}>
                     <Typography variant='h4' textAlign='center' gutterBottom>
@@ -92,6 +101,7 @@ function EditProfilePage() {
 
             <div style={{margin: 20}}/>
 
+            {/* Tornar admin */}
             {user.type === UserTypes.CLIENT &&
                 <Card raised sx={{padding: 5}}>
                     <Typography variant='h4' textAlign='center' gutterBottom>

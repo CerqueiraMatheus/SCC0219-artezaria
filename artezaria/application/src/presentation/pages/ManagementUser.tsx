@@ -16,21 +16,17 @@ import {User} from "../../domain/User";
 const ManagementUser = () => {
     const {users, setUsers} = useContext(ManagementContext);
 
+    // Reseta ao iniciar
     useEffect(() => {
         setUsers([]);
     }, []);
 
-    const [localUsers, setLocalUsers] = useState<User[]>(users);
-
+    // Lida com a submissão
     const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value.length < 1) return;
         let res = await findUserByEmail(event.target.value);
         setUsers(res.users!);
     }
-
-    useEffect(() => {
-        setLocalUsers(users);
-    }, [users]);
 
     return (
         <>
@@ -49,6 +45,8 @@ const ManagementUser = () => {
                        }}
                        onChange={handleChange}
             />
+
+            {/* Itens */}
             <Box component='div'>
                 <Grid container spacing={3} sx={{mt: 0, display: 'flex', justifyContent: 'center'}}>
                     {users.length > 0 && (users.map((user) => (

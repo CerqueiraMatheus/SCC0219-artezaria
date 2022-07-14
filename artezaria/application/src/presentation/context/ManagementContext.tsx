@@ -33,6 +33,7 @@ export const ManagementProvider = ({children}) => {
         localStorage.setItem('users', JSON.stringify([...u]));
     }
 
+    // Update user
     const updateUser = async (u: User) => {
         let index = users.map(function (x) {
             return x._id;
@@ -44,6 +45,7 @@ export const ManagementProvider = ({children}) => {
         return users[index];
     }
 
+    // Remove user
     const removeUser = async (u: User) => {
         let response = await deleteUser(u);
 
@@ -62,6 +64,7 @@ export const ManagementProvider = ({children}) => {
         }
     }
 
+    // Remove produt
     const removeProduct = async (p: Product) => {
         let response = await deleteProduct(p);
 

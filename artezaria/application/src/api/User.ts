@@ -1,9 +1,8 @@
 import axios from 'axios';
 import {User} from "../domain/User";
 import {SERVER_URL} from "../util/Consts";
-import {Product} from "../domain/Product";
-import {PurchaseItem} from "../domain/PurchaseItem";
 
+// Login
 export const signIn = async (email: string, password: string) => {
     try {
         let response = await axios.post(SERVER_URL + "user/signin", {
@@ -24,6 +23,7 @@ export const signIn = async (email: string, password: string) => {
     }
 }
 
+// Cadastro
 export const signUp = async (name: string, lastName: string, address: string, email: string, password: string) => {
     try {
         let response = await axios.put(SERVER_URL + "user/signup", {
@@ -46,7 +46,7 @@ export const signUp = async (name: string, lastName: string, address: string, em
     }
 }
 
-
+// Atualização
 export const update = async (user: User) => {
     try {
         let response = await axios.put(SERVER_URL + "user/update", {"user": user});
@@ -63,6 +63,7 @@ export const update = async (user: User) => {
     }
 }
 
+// Encontra por e-mail
 export const findUserByEmail = async (email: string) => {
     try {
         let response = await axios.post(SERVER_URL + "user/findbyemail", {
@@ -83,7 +84,7 @@ export const findUserByEmail = async (email: string) => {
     }
 }
 
-
+// Atualiza para administrador
 export const updateToAdmin = async (user: User) => {
     try {
         let response = await axios.post(SERVER_URL + "user/updatetoadmin", {
@@ -105,6 +106,7 @@ export const updateToAdmin = async (user: User) => {
     }
 }
 
+// Deleta usuário
 export const deleteUser = async (user: User) => {
     try {
         let response = await axios.delete(SERVER_URL + "user/delete", {
@@ -128,7 +130,7 @@ export const deleteUser = async (user: User) => {
     }
 }
 
-
+// Lista usuário por ID
 export const getUserByID = async (id: string) => {
 
     try {

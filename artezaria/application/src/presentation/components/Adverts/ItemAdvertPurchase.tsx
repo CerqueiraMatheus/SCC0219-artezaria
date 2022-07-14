@@ -11,6 +11,7 @@ const ItemAdvertPurchase = (itemAdvertPurchase: PurchaseItem) => {
     const [item, setItem] = useState<PurchaseItem>(itemAdvertPurchase);
     const {enqueueSnackbar} = useSnackbar();
 
+    // Atualiza status de um produto
     const updateSatus = async () => {
         let res = await markItemSent(item);
         if (res.purchaseItem) return setItem(res.purchaseItem);
@@ -29,6 +30,7 @@ const ItemAdvertPurchase = (itemAdvertPurchase: PurchaseItem) => {
             mt: 2,
             padding: 5
         }}>
+            {/* Informações gerais */}
             <Box component='div' sx={{mt: 2, mb: 2}}>
                 <Typography variant='h6' align='left' sx={{mb: 1}}>Item: {item.product.title}</Typography>
                 <Typography variant='h6'
@@ -40,6 +42,7 @@ const ItemAdvertPurchase = (itemAdvertPurchase: PurchaseItem) => {
                 <Typography variant='h6' align='left'>Endereço: {item.user.address}</Typography>
             </Box>
 
+            {/* Dado da entrega */}
             <Box component='div' sx={{
                 width: 'auto',
                 mt: 'auto',

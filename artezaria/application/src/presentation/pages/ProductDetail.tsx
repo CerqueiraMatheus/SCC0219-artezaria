@@ -13,6 +13,7 @@ const ItemDetailContainer = () => {
     const [product, setProduct] = useState<Product>();
     const {enqueueSnackbar} = useSnackbar();
 
+    // Carrega o item ao iniciar
     useEffect(() => {
         const fetchData = async () => {
             const res = await findProduct(itemId!.toString());
@@ -25,11 +26,11 @@ const ItemDetailContainer = () => {
         fetchData();
     }, []);
 
+    // Reposiciona a tela
     useEffect(() => {
         window.scrollTo(0, 0)
     }, []);
 
-    // let itemTest = PRODUCTS.find(x => x._id === itemId)!;
     return (
         product ?
             <ItemDetail {...product!}/> : <Loading/>);

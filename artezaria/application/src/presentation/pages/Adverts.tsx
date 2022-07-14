@@ -15,6 +15,7 @@ function Adverts() {
     const createAdvert = () => navigate(`/create`);
     const {enqueueSnackbar} = useSnackbar();
 
+    // Atualiza aoniciar a pagina
     useEffect(() => {
         const fetchData = async () => {
             const res = await findPublishedProducts(user);
@@ -29,11 +30,13 @@ function Adverts() {
 
     return (
         <>
+            {/* Titulo */}
             <Typography variant="h4">Meus anúncios</Typography>
             <Divider sx={{marginBottom: 5}}/>
             <Button variant="contained" color="secondary" endIcon={<AddIcon/>} onClick={createAdvert}>Criar novo
                 anúncio</Button>
 
+            {/* Itens */}
             <Grid container spacing={2} sx={{marginTop: 5}}>
                 {products?.map((item) => (
                     <Grid item xs={4} key={item._id}>

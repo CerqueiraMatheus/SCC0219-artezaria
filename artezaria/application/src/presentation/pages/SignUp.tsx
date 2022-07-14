@@ -21,6 +21,7 @@ export default function SignUp() {
     const {setUser} = useContext(UserContext);
     const {enqueueSnackbar} = useSnackbar();
 
+    // Lida com a submissão
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -72,9 +73,12 @@ export default function SignUp() {
                 <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
                     <LockOutlinedIcon/>
                 </Avatar>
+                {/* Título */}
                 <Typography component="h1" variant="h5">
                     Cadastro
                 </Typography>
+
+                {/* Campos */}
                 <Box component="form" onSubmit={handleSubmit} sx={{mt: 3}}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>

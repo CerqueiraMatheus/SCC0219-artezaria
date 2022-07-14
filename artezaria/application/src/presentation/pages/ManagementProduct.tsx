@@ -14,10 +14,12 @@ import {findProductByName} from "../../api/Product";
 const ManagementProduct = () => {
     const {products, setProducts} = useContext(ManagementContext);
 
+    // Reseta ao iniciar
     useEffect(() => {
         setProducts([]);
     }, []);
 
+    // Lida com a submissão
     const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value.length < 1) return;
         let res = await findProductByName(event.target.value);
@@ -41,6 +43,8 @@ const ManagementProduct = () => {
                        }}
                        onChange={handleChange}
             />
+
+            {/* Itens */}
             <Box component='div'>
                 <Grid container spacing={3} sx={{mt: 0, display: 'flex', justifyContent: 'center'}}>
                     {products.length > 0 && (products.map((product) => (

@@ -15,6 +15,7 @@ const ManagementProductItem = (product: Product) => {
     const {removeProduct} = useContext(ManagementContext);
     const {enqueueSnackbar} = useSnackbar();
 
+    // Lida com a remoção
     const handleRemove = async () => {
         let response = await removeProduct(product);
 
@@ -39,6 +40,8 @@ const ManagementProductItem = (product: Product) => {
         }}>
 
             <Grid container spacing={2} alignItems="center">
+
+                {/* Título */}
                 <Grid item xs={6}>
                     <Box component='div' sx={{mt: 2, mb: 2}}>
                         <Typography variant='h6' align='left' sx={{mb: 1}}>{product.title}</Typography>
@@ -46,6 +49,7 @@ const ManagementProductItem = (product: Product) => {
                     </Box>
                 </Grid>
 
+                {/* Informações de estoque */}
                 <Grid item xs={3}>
                     <Box component='div' sx={{mt: 2, mb: 2, ml: '10%'}}>
                         <Typography align='left'>Quantidade em estoque: {product.quantityInStock}</Typography>
@@ -54,6 +58,7 @@ const ManagementProductItem = (product: Product) => {
                     </Box>
                 </Grid>
 
+                {/* Ações */}
                 <Grid item xs={3}>
                     <Box component='div' sx={{
                         width: 'auto',

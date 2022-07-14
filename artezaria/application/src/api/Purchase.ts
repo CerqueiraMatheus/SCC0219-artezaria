@@ -4,6 +4,7 @@ import {SERVER_URL} from "../util/Consts";
 import {User} from "../domain/User";
 import {PurchaseItem} from "../domain/PurchaseItem";
 
+// Compra um carrinho
 export const buyCart = async (products: PurchaseItem[], user: User) => {
     try {
         let response = await axios.post(SERVER_URL + "purchase/buy", {
@@ -24,6 +25,7 @@ export const buyCart = async (products: PurchaseItem[], user: User) => {
     }
 }
 
+// Lista compras de um usuário
 export const listPurchasesUser = async (user: User) => {
     try {
         let response = await axios.post(SERVER_URL + "purchase/listbyuser", {
@@ -43,6 +45,7 @@ export const listPurchasesUser = async (user: User) => {
     }
 }
 
+// Lista as compras de um produto
 export const listPurchasesItem = async (item: Product) => {
     try {
         let response = await axios.post(SERVER_URL + "purchase/listbyproduct", {
@@ -62,7 +65,7 @@ export const listPurchasesItem = async (item: Product) => {
     }
 }
 
-
+// Marca um item como enviado
 export const markItemSent = async (item: PurchaseItem) => {
     try {
         let response = await axios.post(SERVER_URL + "purchase/markitemsent", {

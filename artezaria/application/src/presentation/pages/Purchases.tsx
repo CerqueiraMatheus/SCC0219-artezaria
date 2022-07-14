@@ -11,6 +11,7 @@ const Purchases = () => {
     const [purchases, setPurchases] = useState<Purchase []>();
     const {enqueueSnackbar} = useSnackbar();
 
+    // Carrega as compras
     useEffect(() => {
         const fetchData = async () => {
             const res = await listPurchasesUser(user);

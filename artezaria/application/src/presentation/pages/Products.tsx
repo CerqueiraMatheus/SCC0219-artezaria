@@ -1,7 +1,6 @@
 import ItemList from '../components/Item/ItemList';
-import {PRODUCTS} from "../../data/ProductsData";
 import {useEffect, useState} from "react";
-import {findPublishedProducts, getProducts, getProductsByArtist} from "../../api/Product";
+import {getProducts, getProductsByArtist} from "../../api/Product";
 
 const Products = () => {
     const [mostSold, setMostSold] = useState([]);
@@ -10,10 +9,12 @@ const Products = () => {
     const [edvardMuch, setEdvardMunch] = useState([]);
     const [vitalino, setVitalino] = useState([]);
 
+    // Reposiciona a tela
     useEffect(() => {
         window.scrollTo(0, 0)
     }, []);
 
+    // Carrega os dados
     useEffect(() => {
         const fetchData = async () => {
             setMostSold((await getProducts(true)).products);

@@ -19,6 +19,8 @@ const ManagementUserItem = (u: User) => {
 
     const navigate = useNavigate();
     const {removeUser, updateUser} = useContext(ManagementContext);
+
+    // Lida com a remoção
     const handleRemove = async () => {
         let response = await removeUser(user);
 
@@ -32,6 +34,7 @@ const ManagementUserItem = (u: User) => {
         });
     }
 
+    // Lida com a atualização
     const handleUpdate = async () => {
         setUser(await updateUser(u));
         return enqueueSnackbar("Agora, " + u.name + " é administrador!", {
@@ -53,12 +56,14 @@ const ManagementUserItem = (u: User) => {
             mt: 2,
             padding: 5
         }}>
+            {/* Dados gerais */}
             <Box component='div' sx={{mt: 2, mb: 2}}>
                 <Typography variant='h4' align='left' sx={{mb: 1}}>{user.name + ' ' + user.lastName} </Typography>
                 <Typography align='left'>Email: {user.email}</Typography>
                 <Typography align='left'>Endereço: {user.address}</Typography>
             </Box>
 
+            {/* Ações */}
             <Box component='div' sx={{
                 width: 'auto',
                 mt: 'auto',

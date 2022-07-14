@@ -71,7 +71,7 @@ const CartItem = (item: PurchaseItem) => {
                         </Box>
                     </Grid>
 
-                    {/* Quantity selection */}
+                    {/* Actions */}
                     <Grid
                         item
                         xs={2}
@@ -80,6 +80,7 @@ const CartItem = (item: PurchaseItem) => {
                         justifyContent='center'
                         alignContent='center'
                     >
+                        {/* Quantity selection */}
                         <Typography variant="body2">
                             Quantidade
                         </Typography>
@@ -117,11 +118,10 @@ const CartItem = (item: PurchaseItem) => {
 
                     </Grid>
 
+                    {/* Subtotal */}
                     <Grid
                         item
                         xs={2}
-                        // sm={3}
-                        // md={2}
                         display='grid'
                         textAlign='center'
                         justifyContent='center'
@@ -133,11 +133,10 @@ const CartItem = (item: PurchaseItem) => {
                         </Typography>
                     </Grid>
 
+                    {/* Excluir */}
                     <Grid
                         item
                         xs={1}
-                        // sm={2}
-                        // md={1}
                         display='grid'
                         textAlign='center'
                         justifyContent='center'

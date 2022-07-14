@@ -3,6 +3,7 @@ import axios from "axios";
 import {SERVER_URL} from "../util/Consts";
 import {User} from "../domain/User";
 
+// Cria um produto
 export const createProduct = async (product: Product) => {
     try {
         let response = await axios.post(SERVER_URL + "product/create", {
@@ -22,6 +23,7 @@ export const createProduct = async (product: Product) => {
     }
 }
 
+// Encontra os produtos publicados por um usuário
 export const findPublishedProducts = async (user: User) => {
     try {
         let response = await axios.post(SERVER_URL + "product/findpublished", {
@@ -41,6 +43,7 @@ export const findPublishedProducts = async (user: User) => {
     }
 }
 
+// Encontra um produto por seu ID
 export const findProduct = async (id: string) => {
     try {
         let response = await axios.post(SERVER_URL + "product/find", {
@@ -60,6 +63,7 @@ export const findProduct = async (id: string) => {
     }
 }
 
+// Encontra um produto por seu nome
 export const findProductByName = async (name: string) => {
     try {
         let response = await axios.post(SERVER_URL + "product/findbyname", {
@@ -79,6 +83,7 @@ export const findProductByName = async (name: string) => {
     }
 }
 
+// Deleta um produto
 export const deleteProduct = async (product: Product) => {
     try {
         let response = await axios.delete(SERVER_URL + "product/delete", {
@@ -100,7 +105,7 @@ export const deleteProduct = async (product: Product) => {
     }
 }
 
-
+// Lista produtos (mais vendidos ou mais recentes)
 export const getProducts = async (mostSold: boolean) => {
     try {
         let response = await axios.get(SERVER_URL + "product/" + (mostSold ? "mostsold" : "mostrecent"));
@@ -118,6 +123,7 @@ export const getProducts = async (mostSold: boolean) => {
     }
 }
 
+// Lista produtos de um artista
 export const getProductsByArtist = async (id: string) => {
     try {
         let response = await axios.get(SERVER_URL + "product/byartist/" + id);

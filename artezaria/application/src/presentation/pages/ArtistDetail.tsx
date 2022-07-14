@@ -20,10 +20,12 @@ const ArtistDetail = () => {
     let [products, setProducts] = useState<Product[]>([]);
     const {enqueueSnackbar} = useSnackbar();
 
+    // Reposiciona a tela
     useEffect(() => {
         window.scrollTo(0, 0)
     }, []);
 
+    // Atualiza
     useEffect(() => {
         const fetchData = async () => {
             const res = await getUserByID(artistId!.toString());
@@ -31,22 +33,16 @@ const ArtistDetail = () => {
                 variant: 'error'
             });
 
-            // console.log(res.user);
             setArtist(res.user);
             console.log(res.user);
 
             const res2 = await getProductsByArtist(artistId!.toString());
 
-            // console.log(res2.products);
             setProducts(res2.products);
         }
 
         fetchData();
     }, [artistId, enqueueSnackbar]);
-
-    // let artist = USERS.find(x => x._id === artistId && x.type === UserTypes.ARTIST)!;
-    // let products = PRODUCTS.filter(x => x.artist._id === artist._id)!;
-    // console.log(products);
 
     return (artist ?
             <>

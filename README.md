@@ -43,9 +43,9 @@
 
 O protótipo da plataforma foi implementado usando HTML, CSS, alguns componentes do [Material Design](https://material.io/design) e o carrossel do framework [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/) para a exibição dos produtos e os scripts necessários para o funcionamento dos elementos.
 
-### 2.2. Versão em produção
+### 2.2. Versão final
 
-A versão atual da plataforma, em produção, foi implementada usando o *framework*  React, ideais de estilização do [Material Design](https://material.io/design) e a biblioteca [Material UI](https://mui.com/), que implementa os componentes do Material Design. O protótipo se encontra na pasta `prototipo` e a versão em produção em `site`.
+A versão atual da plataforma, em produção, foi implementada usando os *frameworks*  React e Node, ideais de estilização do [Material Design](https://material.io/design) e a biblioteca [Material UI](https://mui.com/), que implementa os componentes do Material Design. O protótipo se encontra na pasta `prototipo` e a versão final em `artezaria`.
 
 ### 2.3. Diagramas de navegação
 
@@ -81,17 +81,25 @@ Através das telas propostas, os autores esperam que, através do sistema:
 
 O código-fonte do protótipo está disposto sob a pasta `prototipo`. Nela, estão as pastas `css`, com os estilos desenvolvidos, `pages`, com as páginas desenvolvidas e os demais arquivos utilizados pelas ferramentas externas utilizadas.
 
-### 3.2. Versão em produção
+### 3.2. Versão final
 
-O código-fonte do protótipo está disposto sob a pasta `site`. Nela, está a pasta `src`, diretório principal, com o conteúdo desenvolvido. O diretório é dividido em:
+O código-fonte do protótipo está disposto sob a pasta `artezaria`. Nela, estão as pastas `application`, com o conteúdo do *front-end* em React.js e `server`, com o conteúdo do *back-end* em Node.js. O diretório `src` de `application` é dividido em:
 
-* `data`: dados *fake* de produtos, produtos comprados e de usuários;
-* `domain`: definição dos objetos utilizados (`CreditCard`, `Product`, `PurchaseItem` e `User`);
+* `api`: arquivos de integração com o servidor;
+* `domain`: definição dos objetos utilizados (`CreditCard`, `Product`, `PurchaseItem`, `Purchase` e `User`);
 * `presentation`:
 	- `components`: componentes parciais utilizados nas telas;
 	- `context`: contexto de aplicação de carrinho, gerenciamento, tema e usuário;
 	- `pages`: páginas desenvolvidas;
 	- `routers`: rotas para aplicação.
+* Arquivos da aplicação.
+
+O diretório `src` de `server` é dividido em:
+
+* `controller`: arquivos de integração com o servidor;
+* `model`: definição dos objetos utilizados (`Purchase`, Product`, `PurchaseItem` e `User`);
+* `route`: rotas para aplicação;
+* `util`: arquivos úteis;
 * Arquivos da aplicação.
 
 ## 4. Procedimentos de execução
@@ -100,9 +108,13 @@ O código-fonte do protótipo está disposto sob a pasta `site`. Nela, está a p
 
 Basta realizar o download do repositório, navegar até a pasta em que estão dispostos os protótipos desenvolvidos e abrir num navegador web.
 
-### 4.2. Para a versão em produção
+### 4.2. Para a versão final
 
-No Ubuntu, instale o `npm` e, para construir projetos em React, use `npm install create-react-app`. Para executar o projeto, clone o repositório e, dentro da pasta `site`, execute `npm start`.
+1. No Ubuntu, instale o `npm`;
+2. Para construir projetos com nodemon, use `npm install -g nodemon`;
+3. Para executar o projeto em Node, dentro da pasta `server`, execute `npm start`;
+4. Para construir projetos em React, use `npm install create-react-app`;
+5. Para executar o projeto em React, dentro da pasta `application`, execute `npm start`.
 
 ## 5. Plano de testes
 
@@ -110,35 +122,34 @@ No Ubuntu, instale o `npm` e, para construir projetos em React, use `npm install
 
 O projeto foi executado apenas no navegador Google Chrome, sem problemas aparentes de execução. Quando houver a possibilidade de uso de frameworks e servidor, serão utilizadas as ferramentas adequadas para testes, como, por exemplo, JUnit e Postman.
 
-### 5.2. Para a versão em produção
-
-Os itens marcados com ¹ representam interfaces funcionais (telas e botões), mas sem efeitos.
+### 5.2. Para a versão final
 
 #### a. Cliente
 
-* Faça *login* com o usuário padrão de cliente, e-mail `cliente@site.com` e senha `cliente123`;
-* A tela inicial deve ser exibida com os produtos. Acesse uma página de produto com `ver mais` de um dos produtos; alternativamente, ao clicar no nome do artista da obra, deve ocorrer um redirecionamento para a página do artista.
-* Clique em `terminar minha compra` ou clique no ícone de carrinho para ser redirecionado à página de carrinho; nela, alterer a quantidade e veja os campos se alterarem junots; alternativamente, exclua o item.
-* Clique em `ir ao pagamento` para iniciar o checkout; insira seus dados¹, clique em `próximo`, veja a confirmação da compra¹ e clique em `finalizar`.
-* Ao finalizar, uma mensagem de confirmação é exibida, o carrinho resetado e retorna-se à página inicial.
+> Use, para exemplo, o usuário `cliente1@cliente.com` e senha `cliente123`
+
+* Um cliente deve conseguir cadastrar-se e fazer login;
+* Um cliente deve conseguir ver produtos publicados ao clicar em seus cards;
+* Um cliente deve conseguir ver artistas ao clicar em seus nomes nos cards de produto;
+* Um cliente, na página de produto, deve conseguir selecionar um produto para o carrinho;
+* Um cliente, na página de carrinho, deve conseguir alterar a quantidade e remover seus produtos;
+* Um cliente, no fluxo de compra, deve conseguir comprar seu carrinho;
+* Um cliente, a partir da tela de edição de perfil, deve conseguir alterar seus dados ou se tornar um artesão.
 
 #### b. Artesão
 
-* Faça *login* com o usuário padrão de artesão, e-mail `artesao@site.com` e senha `artesao123`;
-* Clique no ícone de perfil para acessar as opções de usuário;
-* Clique em `anúncios` para ver seus anúncios;
-* Clique em `criar novo anúncio` para ser redirecionado à tela de anúncio¹;
-* Alternativamente, clique em `ver anúncio` para ir à página do anúncio (sem o botão de adicionar ao carrinho)¹;
-* Alternativamente, clique em `ver vendas` para ver as vendas realizadas e seus status¹.
+> Use, para exemplo, o usuário `vincent@vangogh.com` e senha `vincent123`
+
+* Um artesão deve conseguir, a partir de sua página de perfil, inserir sua descrição;
+* Um artesão deve conseguir, a partir da página de anúncios, criar e visualizar seus anúncios;
+* Um artesão deve conseguir, a partir da visualização de vendas de um anúncio, marcá-lo como enviado aos compradores.
 
 #### c. Administrador
 
-* Faça *login* com o usuário padrão de administrador, e-mail `admin@site.com` e senha `admin123`;
-* A tela inicial deve mostrar apenas as opções de gerenciamento; o cabeçalho deve mostrar apenas o ícone de gerenciamento;
-* Clique em `gerenciar anúncios` para acessar a tela de gerenciamento de anúncios¹;
-* Alternativamente, clique em `gerenciar usuários` para acessar a tela de gerenciamento de usuários¹
-	- Se o usuário for do tipo `cliente`, não deve haver a opção de `ver perfil`;
-	- Se o usuário for do tipo `administrador`, não deve haver a opção de `excluir`.
+> Use, para exemplo, o usuário `admin1@admin.com` e senha `admin123`
+
+* Um administrador deve conseguir, a partir da tela de manutenção de anúncios, pesquisar, visualizar ou remover um anúncio;
+* Um administrador deve conseguir, a partir da tela de manutenção de usuários, pesquisar, visualizar (se artesão), tornar administrador e excluir (se não for administrador) um usuário.
 
 ## 6. Problemas
 

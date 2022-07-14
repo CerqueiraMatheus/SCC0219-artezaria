@@ -45,7 +45,7 @@ O protótipo da plataforma foi implementado usando HTML, CSS, alguns componentes
 
 ### 2.2. Versão final
 
-A versão atual da plataforma, em produção, foi implementada usando os *frameworks*  React e Node, ideais de estilização do [Material Design](https://material.io/design) e a biblioteca [Material UI](https://mui.com/), que implementa os componentes do Material Design. O protótipo se encontra na pasta `prototipo` e a versão final em `artezaria`.
+A versão atual da plataforma, em produção, foi implementada usando os *frameworks*  React e Node, MongoDB para armazenamento de dados, ideais de estilização do [Material Design](https://material.io/design) e a biblioteca [Material UI](https://mui.com/), que implementa os componentes do Material Design. O protótipo se encontra na pasta `prototipo` e a versão final em `artezaria`.
 
 ### 2.3. Diagramas de navegação
 

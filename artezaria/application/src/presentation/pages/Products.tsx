@@ -8,7 +8,7 @@ const Products = () => {
     const [mostRecent, setMostRecent] = useState([]);
     const [vanGogh, setVanGogh] = useState([]);
     const [edvardMuch, setEdvardMunch] = useState([]);
-    const [osGemeos, setOsGemeos] = useState([]);
+    const [vitalino, setVitalino] = useState([]);
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -19,6 +19,7 @@ const Products = () => {
             setMostSold((await getProducts(true)).products);
             setMostRecent((await getProducts(false)).products);
             setVanGogh((await getProductsByArtist("62cf15c0720bdb073681fcb9")).products);
+            setVitalino((await getProductsByArtist("62cf5b293bc94c14a25aa3dc")).products);
         }
 
         fetchData();
@@ -26,11 +27,21 @@ const Products = () => {
 
     return (
         <div>
-            <ItemList items={mostSold} title={"Mais vendidos"}/>
+            {mostSold.length > 0 && (
+                <ItemList items={mostSold} title={"Mais vendidos"}/>
+            )}
 
-            <ItemList items={mostRecent} title={"Mais recentes"}/>
+            {mostRecent.length > 0 && (
+                <ItemList items={mostRecent} title={"Mais recentes"}/>
+            )}
 
-            <ItemList items={vanGogh} title={"Por Van Gogh"}/>
+            {vanGogh.length > 0 && (
+                <ItemList items={vanGogh} title={"Por Van Gogh"}/>
+            )}
+
+            {vitalino.length > 0 && (
+                <ItemList items={vitalino} title={"Por Mestre Vitalino"}/>
+            )}
 
             {/*<ItemList items={PRODUCTS} title={"Título 4"}/>*/}
 

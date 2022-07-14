@@ -25,6 +25,10 @@ const ItemDetailContainer = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []);
+
     // let itemTest = PRODUCTS.find(x => x._id === itemId)!;
     return (
         product ?

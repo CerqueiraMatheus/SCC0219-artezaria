@@ -173,8 +173,8 @@ const getMostSold = async (req, res) => {
     try {
         // let products = await Product.find().sort({quantitySold: -1}).limit(10);
         const products = await Product.aggregate([
-            {$limit: 10},
             {$sort: {quantitySold: -1}},
+            {$limit: 10},
             {
                 $lookup: {
                     from: "user",
@@ -203,8 +203,8 @@ const getMostSold = async (req, res) => {
 const getMostRecent = async (req, res) => {
     try {
         const products = await Product.aggregate([
+            {$sort: {_id: -1}},
             {$limit: 10},
-            {$sort: {data: -1}},
             {
                 $lookup: {
                     from: "user",

@@ -46,7 +46,7 @@ const ItemCard = (item: Product) => {
                 subheader={
                     <Link variant="body2" onClick={openArtist} component="button" underline="none"
                           color="text.secondary">
-                        {item.artist.name}
+                        {item.artist.lastName}
                     </Link>
                 }
 

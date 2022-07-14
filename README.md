@@ -38,7 +38,6 @@
 
 **artezaria** é uma plataforma de compra e venda de obras de arte, como quadros, artesanatos, esculturas, sendo eles de produção única ou em larga quantidade. O foco principal é no comércio dos produtos, mas, também, de valorização de artistas, suas artes e histórias.
 
-
 ### 2.1. Protótipo
 
 O protótipo da plataforma foi implementado usando HTML, CSS, alguns componentes do [Material Design](https://material.io/design) e o carrossel do framework [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/) para a exibição dos produtos e os scripts necessários para o funcionamento dos elementos.

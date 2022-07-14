@@ -139,6 +139,7 @@ const findProductByName = async (req, res) => {
     }
 };
 
+// Deleção
 const deleteProduct = async (req, res) => {
     try {
         let product = new Product(req.body.product);
@@ -169,9 +170,9 @@ const deleteProduct = async (req, res) => {
     }
 }
 
+// Mais vendidos
 const getMostSold = async (req, res) => {
     try {
-        // let products = await Product.find().sort({quantitySold: -1}).limit(10);
         const products = await Product.aggregate([
             {$sort: {quantitySold: -1}},
             {$limit: 10},
@@ -200,6 +201,7 @@ const getMostSold = async (req, res) => {
     }
 }
 
+// Mais recentes
 const getMostRecent = async (req, res) => {
     try {
         const products = await Product.aggregate([
@@ -230,6 +232,7 @@ const getMostRecent = async (req, res) => {
     }
 }
 
+// Produtos de artista
 const getByArtist = async (req, res) => {
     try {
         const products = await Product.aggregate([

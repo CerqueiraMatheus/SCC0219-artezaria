@@ -62,6 +62,7 @@ const signUp = async (req, res) => {
     }
 }
 
+// Atualização
 const updateUser = async (req, res) => {
     try {
         // Encontra o usuário
@@ -109,6 +110,7 @@ const findUserByEmail = async (req, res) => {
     }
 };
 
+// Atualização para admin
 const updateToAdmin = async (req, res) => {
     try {
         let reqUser = req.body.user;
@@ -133,6 +135,7 @@ const updateToAdmin = async (req, res) => {
     }
 }
 
+// Deleção
 const deleteUser = async (req, res) => {
     try {
         let user = new User(req.body.user);
@@ -173,6 +176,7 @@ const deleteUser = async (req, res) => {
     }
 }
 
+// Encontrar por ID
 const findByID = async (req, res) => {
     try {
         const user = await User.aggregate([

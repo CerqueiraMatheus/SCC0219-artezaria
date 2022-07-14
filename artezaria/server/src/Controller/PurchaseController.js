@@ -7,6 +7,7 @@ const Product = require("../Model/Product");
 const {SUCCESS, SERVER_ERROR, PURCHASE_ERROR} = require("../Util/Messages");
 const {ObjectId} = require("mongodb");
 
+// Compra carrinho
 const buyCart = async (req, res) => {
     try {
         let stopOperation = false;
@@ -16,7 +17,6 @@ const buyCart = async (req, res) => {
         let items = [];
         let dbProducts = [];
 
-        // console.log(req.body.products[0].user);
         // Converte os objetos
         for (let p of req.body.products) items.push(new PurchaseItem(p));
         console.log(items);
@@ -85,6 +85,7 @@ const buyCart = async (req, res) => {
     }
 }
 
+// Listagem por usuário
 const listPurchasesUser = async (req, res) => {
     try {
         let resPurchase = await Purchase.find({"user": new ObjectId(req.body.user._id)});
@@ -121,8 +122,8 @@ const listPurchasesUser = async (req, res) => {
     }
 }
 
+// Listagem de compras de produto
 const listPurchasesItem = async (req, res) => {
-    console.log(req.body);
     try {
         let purchases = await PurchaseItem.aggregate([
             {$match: {"product": new ObjectId(req.body.product._id)}},
@@ -160,6 +161,7 @@ const listPurchasesItem = async (req, res) => {
     }
 }
 
+// Marcar item como enviado
 const markItemSent = async (req, res) => {
     try {
         let reqItem = req.body.purchaseItem;

@@ -111,9 +111,9 @@ Basta realizar o download do repositório, navegar até a pasta em que estão di
 
 1. No Ubuntu, instale o `npm`;
 2. Para construir projetos com nodemon, use `npm install -g nodemon`;
-3. Para executar o projeto em Node, dentro da pasta `server`, execute `npm start`;
+3. Para executar o projeto em Node, dentro da pasta `server`, instale as dependências com `npm install` e execute `npm start`;
 4. Para construir projetos em React, use `npm install create-react-app`;
-5. Para executar o projeto em React, dentro da pasta `application`, execute `npm start`.
+5. Para executar o projeto em React, dentro da pasta `application`, instale as dependências com `npm install` e execute `npm start`.
 
 ## 5. Plano de testes
 

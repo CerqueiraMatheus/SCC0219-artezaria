@@ -96,7 +96,7 @@ O código-fonte do protótipo está disposto sob a pasta `artezaria`. Nela, est�
 O diretório `src` de `server` é dividido em:
 
 * `controller`: arquivos de integração com o servidor;
-* `model`: definição dos objetos utilizados (`Purchase`, Product`, `PurchaseItem` e `User`);
+* `model`: definição dos objetos utilizados (`Purchase`, `Product`, `PurchaseItem` e `User`);
 * `route`: rotas para aplicação;
 * `util`: arquivos úteis;
 * Arquivos da aplicação.
